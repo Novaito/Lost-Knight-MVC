@@ -18,7 +18,7 @@ import up.l3info.LostKnight.model.core.miscellaneous.*;
  */
 
 
-public abstract class GameCharacter implements LookableObject {
+public abstract class GameCharacter extends GameObject implements LookableObject {
 
 	private final String NAME;
 	private final String DIALOG;
@@ -35,9 +35,11 @@ public abstract class GameCharacter implements LookableObject {
 	 * @param name The character's name
 	 * @param dialog The character's dialog
 	 */
-	public GameCharacter(String name, String dialog) {
+	public GameCharacter(String name, String dialog, int posX , int posY) {
 		this.NAME = name;
 		this.DIALOG = dialog;
+		this.setPosX(posX);
+		this.setPosY(posY);
 	}
 
 	/**
@@ -48,10 +50,12 @@ public abstract class GameCharacter implements LookableObject {
 	 * @param fn The file path
 	 * @param fromFile true or false : No matter, it's in order to differentiate with the other constructor.
 	 */
-	public GameCharacter(String name, String fn , boolean fromFile){
+	public GameCharacter(String name, String fn , boolean fromFile, int posX, int posY){
 
 		this.NAME = name; 
 		String dial = "";
+		this.setPosX(posX);
+		this.setPosY(posY);
 
 		try{
 			
@@ -95,4 +99,8 @@ public abstract class GameCharacter implements LookableObject {
 	public String toString() {
 		return "  ║ \033[93;1m" + getName() + "\033[0;2m";
 	}
+
+
+
 }
+

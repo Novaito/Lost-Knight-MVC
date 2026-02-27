@@ -13,25 +13,29 @@ public class Weapon extends Item {
 	private static final String DEFAULT_DESC = "This is a %s. It does %d damages per attack";
 
 	/**
-	 * This constructor creates a weapon with a name, its damages amount, and a custom description
+	 * This constructor creates a weapon with a name, its damages amount, custom description, posX and posY
 	 * 
 	 * @param name The name of the weapon
 	 * @param damage The damages the weapon inflicts
 	 * @param desc The custom description of the weapon
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Weapon(String name, int damage, String desc) {
-		super(name, desc);
+	public Weapon(String name, int damage, String desc,int posX, int posY) {
+		super(name, desc,posX,posY);
 		this.damage = damage;
 	}
 	
 	/**
-	 * This constructor creates a weapon with a name, its damages amount and a default description 
+	 * This constructor creates a weapon with a name, its damages amount, a default description, posX and posY
 	 * 
 	 * @param name The name of the weapon
 	 * @param damage The damages the weapon inflicts
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Weapon(String name, int damage) {
-		this(name, damage, String.format(DEFAULT_DESC, name, damage));
+	public Weapon(String name, int damage,int posX, int posY) {
+		this(name, damage, String.format(DEFAULT_DESC, name, damage),posX,posY);
 		this.damage = damage;
 	}
 

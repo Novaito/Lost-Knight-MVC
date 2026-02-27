@@ -22,8 +22,8 @@ public class Orc extends Enemy {
 	 * @param items Lists of items to award
 	 * @param dialog Orc's dialog
 	 */
-	public Orc(String name, int hp, ArrayList<Item> items, String dialog) {
-		super(name, hp, items, dialog, new Weapon("AxRock", 15));
+	public Orc(String name, int hp, ArrayList<Item> items, String dialog , int posX, int posY) {
+		super(name, hp, items, dialog, new Weapon("AxRock", 15) , posX, posY);
 	}
 
 	/**

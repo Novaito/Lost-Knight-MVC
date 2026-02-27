@@ -24,8 +24,8 @@ public class Hero extends AttackableCharacter {
 	 * @param hp The max of heal points
 	 * @param dialog His dialog
 	 */
-	public Hero(String name, int hp, String dialog) {
-		super(name, hp, dialog);
+	public Hero(String name, int hp, String dialog,int posX, int posY) {
+		super(name, hp, dialog,posX,posY);
 		stamina = MAX_STAMINA;
 		hunger = MAX_HUNGER / 2;
 		bag = new Bag("Hero's Bag", DEFAULT_MAX_INVENTORY_ITEMS);

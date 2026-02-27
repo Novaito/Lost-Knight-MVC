@@ -9,13 +9,15 @@ package up.l3info.LostKnight.model.core.items;
 public class Bag extends Container {
 	
 	/**
-	 * This constructor creates a bag with a name and its maximum capacity
+	 * This constructor creates a bag with a name, its maximum capacity, posX and posY
 	 * 
 	 * @param name The name of the bag
 	 * @param maxItems The maximum items the bag can contain
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Bag(String name, int maxItems) {
-		super(name, maxItems);
+	public Bag(String name, int maxItems,int posX, int posY) {
+		super(name, maxItems,posX,posY);
 	}
 	
 	/**

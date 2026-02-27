@@ -10,7 +10,7 @@ import up.l3info.LostKnight.model.core.items.*;
  * @author Thomas
  */
 
-public abstract class Enemy extends AttackableCharacter implements AwardableItem {
+public abstract class Enemy extends AttackableCharacter implements AwardableItem{
 
 	private ArrayList<Item> items;
 	private final Weapon WEAPON;
@@ -22,8 +22,8 @@ public abstract class Enemy extends AttackableCharacter implements AwardableItem
 	 * @param items The lists of items he will give once defeated
 	 * @param w The weapon to inflict damage to the Hero
 	 */
-	public Enemy(String name, int hp, ArrayList<Item> items, String dialog, Weapon w) {
-		super(name, hp, dialog);
+	public Enemy(String name, int hp, ArrayList<Item> items, String dialog, Weapon w,int posX,int posY) {
+		super(name, hp, dialog,posX,posY);
 		updateItems(items);
 		WEAPON = w;
 	}

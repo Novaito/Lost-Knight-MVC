@@ -2,6 +2,7 @@ package up.l3info.LostKnight.model.core.character;
 
 import up.l3info.LostKnight.model.core.items.*;
 import up.l3info.LostKnight.model.core.spells.*;
+import up.l3info.LostKnight.model.core.miscellaneous.*;
 
 
 /**
@@ -9,7 +10,8 @@ import up.l3info.LostKnight.model.core.spells.*;
  * @author Thomas
  */
 
-public abstract class AttackableCharacter extends GameCharacter {
+//Interface attackable Object dans miscellaneous
+public abstract class AttackableCharacter extends GameCharacter implements AttackableObject{
 
 	private int MAX_HP;
 	private int hp;
@@ -22,8 +24,8 @@ public abstract class AttackableCharacter extends GameCharacter {
 	 * @param hp Max heal points that can have the character
 	 * @param dialog Character's dialog
 	 */
-	public AttackableCharacter(String name, int hp, String dialog) {
-		super(name, dialog);
+	public AttackableCharacter(String name, int hp, String dialog,int posX,int posY) {
+		super(name, dialog,posX,posY);
 		this.hp = hp;
 		MAX_HP = hp;
 	}

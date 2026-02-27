@@ -21,8 +21,8 @@ public class Darriwil extends Enemy {
 	 * @param items Lists of items to award
 	 * @param dialog Darriwil's dialog
 	 */
-	public Darriwil(String name, int hp, ArrayList<Item> items, String dialog) {
-		super(name, hp, items, dialog, new Weapon("Sword67", 10));
+	public Darriwil(String name, int hp, ArrayList<Item> items, String dialog,int posX,int posY) {
+		super(name, hp, items, dialog, new Weapon("Sword67", 10),posX, posY);
 	}
 
 	/**

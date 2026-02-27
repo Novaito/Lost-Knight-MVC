@@ -13,26 +13,30 @@ public class Potion extends Consumnable {
 	Spell spell;
 
 	/**
-	 * This constructor creates a potion with its name, a spell and a description 
+	 * This constructor creates a potion with its name, a spell, a description, posX and posY
 
 	 * 
 	 * @param name The name of the potion
 	 * @param spell The spell the potion applies
 	 * @param description The description of the potion
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Potion(String name, Spell spell, String description) {
-		super(name, description);
+	public Potion(String name, Spell spell, String description,int posX, int posY) {
+		super(name, description,posX,posY);
 		this.spell = spell;
 	}
 	
 	/**
-	 * This constructor creates a potion with its name, a spell and a default description
+	 * This constructor creates a potion with its name, a spell, a default description, posX and posY
 	 * 
 	 * @param name The name of the potion
 	 * @param spell The spell the potion applies
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Potion(String name, Spell spell) {
-		super(name);
+	public Potion(String name, Spell spell,int posX, int posY) {
+		super(name,posX,posY);
 		this.spell = spell;
 	}
 

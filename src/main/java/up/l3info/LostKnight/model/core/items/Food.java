@@ -13,25 +13,27 @@ public class Food extends Consumnable {
 	private static final String DEFAULT_DESC = "You see a \u001B[1m%s\u001B[0m. It looks like something you could eat.";
 	
 	/**
-	 * This constructor creates a food item with its name, its foodPoints amount and a custom description.
+	 * This constructor creates a food item with its name, its foodPoints amount, a custom description, posX and posY.
 	 * 
 	 * @param name The name of the food
 	 * @param foodPoints the amount of hunger this food regenerates
 	 * @param desc The custom description of this food
 	 */
-	public Food(String name, int foodPoints, String desc) {
-		super(name, desc);
+	public Food(String name, int foodPoints, String desc,int posX, int posY) {
+		super(name, desc, posX,posY);
 		this.FOOD_POINTS = foodPoints;
 	}
 	
 	/**
-	 * This constructor creates a food item with its name, its foodPoints amount and a default description.
+	 * This constructor creates a food item with its name, its foodPoints amount, a default description, posX and posY
 	 * 
 	 * @param name The name of the food
 	 * @param foodPoints the amount of hunger this food regenerates
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Food(String name, int foodPoints) {
-		this(name, foodPoints, String.format(DEFAULT_DESC, name));
+	public Food(String name, int foodPoints, int posX, int posY) {
+		this(name, foodPoints, String.format(DEFAULT_DESC, name), posX, posY);
 	}
 	
 	/**

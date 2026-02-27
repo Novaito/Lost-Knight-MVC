@@ -15,13 +15,15 @@ public abstract class Container extends Item {
 	private final int MAX_ITEMS;
 
 	/**
-	 * This constructor creates a container with a name and the maximum items it can contain
+	 * This constructor creates a container with a name, the maximum items it can contain, posX and posY
 	 * 
 	 * @param name The name of the container
-	 * @param maxItems
+	 * @param maxItems max capacity
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Container(String name, int maxItems) {
-		super(name);
+	public Container(String name, int maxItems,int posX, int posY) {
+		super(name,posX,posY);
 		MAX_ITEMS = maxItems;
 		items = new CaseInsensitiveHashMap<Item>();
 	}

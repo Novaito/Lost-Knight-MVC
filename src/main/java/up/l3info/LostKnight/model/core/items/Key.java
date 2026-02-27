@@ -10,24 +10,28 @@ public class Key extends Item {
 	private Exit exit;
 
 	/**
-	 * This constructor creates a key with a name.
+	 * This constructor creates a key with a name, posX and posY
 	 * Be careful, no Exit is bound to this key, you'll need to set the exit later
 	 * 
 	 * @param name The name of the key
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Key(String name) {
-		super(name);
+	public Key(String name,int posX, int posY) {
+		super(name,posX,posY);
 		this.exit = null;
 	}
 
 	/**
-	 * This constructor creates a key with its name and the exit bound to it.
+	 * This constructor creates a key with its name and the exit bound to it, posX and posY.
 	 * 
 	 * @param name The name of the key
 	 * @param e The exit that can be opened by this key
+	 * @param posX X position
+	 * @param posY Y position
 	 */
-	public Key(String name,Exit e) {
-		super(name);
+	public Key(String name,Exit e,int posX, int posY) {
+		super(name,posX,posY);
 		this.exit = e;
 	}
 

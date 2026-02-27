@@ -22,8 +22,8 @@ public class Undead extends Enemy {
 	 * @param items Lists of items to award
 	 * @param dialog Undead's dialog
 	 */
-	public Undead(String name, int hp, ArrayList<Item> items, String dialog) {
-		super(name, hp, items, dialog, new Weapon("Bite", 2));
+	public Undead(String name, int hp, ArrayList<Item> items, String dialog, int posX, int posY) {
+		super(name, hp, items, dialog, new Weapon("Bite", 2),posX , posY);
 	}
 
 	/**
@@ -36,8 +36,8 @@ public class Undead extends Enemy {
 	 * @param dialog Undead's dialog
 	 * @param dmg Damages that he will inflict 
 	 */
-	public Undead(String name, int hp, ArrayList<Item> items, String dialog , int dmg) {
-		super(name, hp, items, dialog, new Weapon("Bite", dmg));
+	public Undead(String name, int hp, ArrayList<Item> items, String dialog , int dmg,int posX , int posY) {
+		super(name, hp, items, dialog, new Weapon("Bite", dmg),posX , posY);
 	}
 
 	/**
