@@ -110,6 +110,45 @@ public class Game {
 		}
 		
 	}
+	
+	public boolean exitExists(String exitName) {
+		Exit e = currentLocation.getExit(exitName);
+		return !(e == null);
+	}
+	
+	public boolean isExitReachable(String exitName) {
+		//TODO
+		return false;
+	}
+	
+	public boolean containerExists(String container) {
+		Item c = currentLocation.getItem(container);
+		return !(c == null);
+	}
+	
+	public boolean isContainerReachable(String container) {
+		//TODO
+		return false;
+	}
+	
+	public boolean characterExists(String characterName) {
+		GameCharacter gc = this.currentLocation.getCharacter(characterName);
+		return gc != null;
+
+	}
+	
+	public boolean isCharacterReachable(String characterName) {
+		//TODO
+		return false;
+	}
+	
+	public boolean itemExist(String itemName, String containerName) {
+		if(containerExists(containerName)) {
+			
+		}
+		
+	}
+	
 
 	/**
 	 * Tries to take an Exit.
