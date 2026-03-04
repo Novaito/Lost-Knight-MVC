@@ -144,8 +144,11 @@ public class Game {
 	
 	public boolean itemExist(String itemName, String containerName) {
 		if(containerExists(containerName)) {
-			
+			Chest chest = (Chest)currentLocation.getItem(containerName);
+			Item i = chest.getItem(itemName);
+			return i != null;
 		}
+		return currentLocation.getItem(itemName) != null;
 		
 	}
 	
