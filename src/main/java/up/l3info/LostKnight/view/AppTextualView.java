@@ -1,0 +1,49 @@
+package up.l3info.LostKnight.view;
+
+import java.util.List;
+
+import up.l3info.LostKnight.mvc.View;
+
+public class AppTextualView implements View {
+	
+	private List<View> subViews;
+
+	@Override
+	public void hide() {}
+
+	@Override
+	public void show() {}
+
+	public static AppTextualView create(List<View> subViews) {
+		AppTextualView appView = new AppTextualView();
+		appView.init(subViews);
+		return appView;
+	}
+	
+	private void init(List<View> subViews) {
+		this.subViews = subViews;
+	}
+	
+	public void renderGoCommand(String stringToPrint) {
+		System.out.println(stringToPrint);
+	}
+	
+	public void display() {
+		System.out.println(
+    		    "\033[0;1m╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
+    	    + "\n║\033[95;2m                                                                                                           \033[0;1m║"
+    		+ "\n║\033[95;2m  888                        888                      888    d8P           d8b          888      888       \033[0;1m║"
+    		+ "\n║\033[95;2m  888                        888                      888   d8P            Y8P          888      888       \033[0;1m║"
+    		+ "\n║\033[95;2m  888                        888                      888  d8P                          888      888       \033[0;1m║"
+    		+ "\n║\033[95;2m  888       .d88b.  .d8888b  888888                   888d88K     88888b.  888  .d88b.  88888b.  888888    \033[0;1m║"
+    		+ "\n║\033[95;2m  888      d88\"\"88b 88K      888                      8888888b    888 \"88b 888 d88P\"88b 888 \"88b 888       \033[0;1m║"
+    		+ "\n║\033[95;2m  888      888  888 \"Y8888b. 888                      888  Y88b   888  888 888 888  888 888  888 888       \033[0;1m║"
+    		+ "\n║\033[95;2m  888      Y88..88P      X88 Y88b.                    888   Y88b  888  888 888 Y88b 888 888  888 Y88b.     \033[0;1m║"
+    		+ "\n║\033[95;2m  88888888  \"Y88P\"   88888P'  \"Y888                   888    Y88b 888  888 888  \"Y88888 888  888  \"Y888    \033[0;1m║"
+    		+ "\n║\033[95;2m                                                                                    888                    \033[0;1m║"
+    		+ "\n║\033[95;2m                                                                               Y8b d88P                    \033[0;1m║"
+    		+ "\n║\033[95;2m                                                                                \"Y88P\"                     \033[0;1m║"
+    		+ "\n╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝\033[0;2m"
+		);
+	}
+}

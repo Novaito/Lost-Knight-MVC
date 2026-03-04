@@ -35,4 +35,8 @@ public abstract class Controller<M extends Model, V extends View > {
 
 		/// Initialize this instance's contents. This method should be called immediately after calling the constructor.		
 		public abstract void init();
+		
+		public abstract boolean canExecute(String command);
+		
+		public abstract boolean execute(String command);
 }
