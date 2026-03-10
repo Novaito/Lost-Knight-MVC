@@ -1,13 +1,14 @@
 package up.l3info.LostKnight.model.core.items;
 
 import up.l3info.LostKnight.model.core.miscellaneous.*;
+import up.l3info.LostKnight.mvc.Model;
 
 /**
  * This abstract class represents the items in the games
  * 
  * @author Noé
  */
-public abstract class Item extends GameObject implements LookableObject {
+public abstract class Item extends GameObject implements LookableObject, Model {
 
 	private String name;
 	private String description;

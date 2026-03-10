@@ -4,6 +4,7 @@ import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.model.core.items.*;
 import up.l3info.LostKnight.model.core.miscellaneous.CaseInsensitiveHashMap;
 import up.l3info.LostKnight.model.core.miscellaneous.LookableObject;
+import up.l3info.LostKnight.mvc.Model;
 
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  * 
  * @author Noé
  */
-public class Location implements LookableObject{
+public class Location implements LookableObject, Model{
 
 	private Map<String, Item> items;
 	private Map<String, GameCharacter> characters;
@@ -46,6 +47,10 @@ public class Location implements LookableObject{
 		return exit;
 	}
 	
+	public Map<String, Exit> getExits() {
+		return this.exits;
+	}
+	
 	/**
 	 * Returns the name of this location 
 	 * 
@@ -63,6 +68,10 @@ public class Location implements LookableObject{
 	 */
 	public Item getItem(String itemName) {
 		return this.items.get(itemName);
+	}
+	
+	public Map<String, Item> getItems(){
+		return this.getItems();
 	}
 
 	/**
@@ -152,6 +161,13 @@ public class Location implements LookableObject{
 			}
 			System.out.println("  ╚");
 		}
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

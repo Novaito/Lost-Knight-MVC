@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 import up.l3info.LostKnight.model.core.miscellaneous.*;
+import up.l3info.LostKnight.mvc.Model;
 
 
 /**
@@ -18,7 +19,7 @@ import up.l3info.LostKnight.model.core.miscellaneous.*;
  */
 
 
-public abstract class GameCharacter extends GameObject implements LookableObject {
+public abstract class GameCharacter extends GameObject implements LookableObject, Model {
 
 	private final String NAME;
 	private final String DIALOG;

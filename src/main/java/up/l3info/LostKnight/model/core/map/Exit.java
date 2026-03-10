@@ -1,13 +1,14 @@
 package up.l3info.LostKnight.model.core.map;
 
 import up.l3info.LostKnight.model.core.miscellaneous.*;
+import up.l3info.LostKnight.mvc.Model;
 
 /**
  * This class represents an exit in the game. It Leads to a location
  * 
  * @author Noé
  */
-public class Exit implements LookableObject {
+public class Exit extends GameObject implements LookableObject, Model {
 
 	private Location location;
 	private String name;
@@ -30,7 +31,9 @@ public class Exit implements LookableObject {
 	 * @param location The location it leads to
 	 * @param desc the The description of the Exit
 	 */
-	public Exit(String exitName, Location location, String desc) {
+	public Exit(String exitName, Location location, String desc, int posX, int posY) {
+		setPosX(posX);
+		setPosY(posY);
 		this.name = exitName;
 		this.location = location;
 		if(desc == null) {			
@@ -46,8 +49,8 @@ public class Exit implements LookableObject {
 	 * @param exitName The exit name
 	 * @param location The location it leads to
 	 */
-	public Exit(String exitName, Location location) {
-		this(exitName, location, null);
+	public Exit(String exitName, Location location, int posX, int posY) {
+		this(exitName, location, null, posX, posY);
 	}
 
 	/**
@@ -68,6 +71,12 @@ public class Exit implements LookableObject {
 	
 	public String toString() {
 		return "\033[93;1m" + getName() + "\033[0;2m";
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

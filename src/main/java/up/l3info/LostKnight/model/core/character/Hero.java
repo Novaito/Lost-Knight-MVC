@@ -2,6 +2,7 @@ package up.l3info.LostKnight.model.core.character;
 
 
 import up.l3info.LostKnight.model.core.items.*;
+import up.l3info.LostKnight.mvc.Model;
 
 /**
  * This class represents a specific character : the Hero.
@@ -9,7 +10,7 @@ import up.l3info.LostKnight.model.core.items.*;
  * @author Thomas
  */
 
-public class Hero extends AttackableCharacter {
+public class Hero extends AttackableCharacter implements Model{
 
 	private static final int MAX_STAMINA = 100;
 	private int stamina;
@@ -150,5 +151,11 @@ public class Hero extends AttackableCharacter {
 	 */
 	public void showStamina() {
 		System.out.println("\033[0;1mYou have " + getStamina() + " stamina points out of " + MAX_STAMINA + ".\033[0;2m");
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

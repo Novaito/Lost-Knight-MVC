@@ -11,6 +11,7 @@ import up.l3info.LostKnight.model.core.items.Key;
 import up.l3info.LostKnight.model.core.items.Weapon;
 import up.l3info.LostKnight.model.core.map.*;
 import up.l3info.LostKnight.model.core.miscellaneous.*;
+import up.l3info.LostKnight.mvc.Model;
 
 /**
  * This class handle all the game loop and all the game logic
@@ -18,7 +19,7 @@ import up.l3info.LostKnight.model.core.miscellaneous.*;
  * @author Noé
  * 
  * */
-public class Game {
+public class Game implements Model{
 
 	/**
 	 * Scanner isn't constant because it has to be modified in the Junit test.
@@ -366,6 +367,12 @@ public class Game {
     		+ "\n║\033[95;2m                                                                                \"Y88P\"                     \033[0;1m║"
     		+ "\n╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝\033[0;2m"
 		);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

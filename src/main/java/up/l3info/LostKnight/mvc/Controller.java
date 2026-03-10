@@ -1,5 +1,8 @@
 package up.l3info.LostKnight.mvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /// Generic Controller for the triple {Model-View-Controller}.
 /// Every Controller can create some sub-controllers.
@@ -13,6 +16,10 @@ public abstract class Controller<M extends Model, V extends View > {
 
 		/// Related [View]
 		protected final V view;
+		
+		/// Sub-controllers
+		protected final List<Controller> subControllers = new ArrayList<>();
+
 
 		/// Custom constructor
 		///
@@ -36,7 +43,14 @@ public abstract class Controller<M extends Model, V extends View > {
 		/// Initialize this instance's contents. This method should be called immediately after calling the constructor.		
 		public abstract void init();
 		
-		public abstract boolean canExecute(String command);
 		
-		public abstract boolean execute(String command);
+		protected final static List<View> extractSubViews(List<Controller<? extends Model, ? extends View>> subCont){
+			List<View> subViews = new ArrayList<View>();
+			for (Controller<? extends Model, ? extends View> controller : subCont) {
+				subViews.add(controller.getView());
+			}
+			return subViews;
+		}
+		
+		
 }
