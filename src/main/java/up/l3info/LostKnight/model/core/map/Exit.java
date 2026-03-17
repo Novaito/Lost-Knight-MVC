@@ -79,4 +79,6 @@ public class Exit extends GameObject implements LookableObject, Model {
 		
 	}
 
+	public Location getLocation(){return this.location;}
+
 }
