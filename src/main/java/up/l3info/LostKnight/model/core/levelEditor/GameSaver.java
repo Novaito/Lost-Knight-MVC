@@ -2,6 +2,7 @@ package up.l3info.LostKnight.model.core.levelEditor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import up.l3info.LostKnight.model.core.game.Game;
+import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.map.Exit;
 import up.l3info.LostKnight.model.core.map.Location;
 import up.l3info.LostKnight.model.core.miscellaneous.GameObject;
@@ -81,11 +82,11 @@ public class GameSaver {
 
     //privé car normalement j'en aurais besoin qu'ici
     private void addLoc(String loc , HashMap<String, ? extends GameObject> locObject){
-        gameMap.put(loc , locObject);
+        gameMap.putIfAbsent(loc , locObject);
     }
 
     private void addExit(Exit e) {
-        this.exitMap.put(e.getName(), e);
+        this.exitMap.putIfAbsent(e.getName(), e);
     }
 
     private void addAllExitAux(Location loc){
@@ -100,6 +101,21 @@ public class GameSaver {
             addExit(e);
             addAllExitAux(game.getSpawn());
         });
+    }
+
+
+
+    private void addAllLocAux(Location loc){
+            addLoc(loc.getName() , (HashMap<String, Item>) loc.getItems());
+            loc.getExits().forEach((str , e) -> {
+                if(!this.gameMap.containsKey(e.getLocation()))
+                addAllLocAux(e.getLocation());
+            });
+
+    }
+
+    public void addAllLoc(){
+            addAllLocAux(game.getSpawn());
     }
 
 
