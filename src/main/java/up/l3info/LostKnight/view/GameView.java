@@ -1,8 +1,11 @@
 package up.l3info.LostKnight.view;
 
 
+import java.util.List;
+
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import up.l3info.LostKnight.mvc.View;
 
 public class GameView extends BorderPane implements View {
@@ -21,25 +24,36 @@ public class GameView extends BorderPane implements View {
 		super();
 	}
 	
-	public static GameView create(View leftView, LocationView centerView) {
+	/**
+	 * Instanciate properly the game view
+	 * @param childsElement List of elements to add (buttons quit,...)
+	 * @param centerView
+	 * @param hero
+	 * @return
+	 */
+	public static GameView create(List<Node> childsElement,LocationView centerView, CharactersView hero) {
 		GameView gameView = new GameView();
-		gameView.init(leftView, centerView);
+		gameView.init(childsElement, centerView, hero);
 		return gameView;
 	}
 	
-	private void init(View leftView, LocationView centerView) {
-		setLeft((Node) leftView);
+	private void init(List<Node> childsElement, LocationView locationView, CharactersView hero) {
+		String urlProfileHero = getClass().getResource("/img/profileHero.png").toExternalForm();
+		HeroStateBar heroStateBar = HeroStateBar.create(urlProfileHero, hero.progressProperty().getValue());
+		heroStateBar.progressProperty().bind(hero.progressProperty());
+		SideBarGame sideBarGame = SideBarGame.create(childsElement, heroStateBar);
+		setLeft(sideBarGame);
+		
+		Pane centerView = new Pane();
+		centerView.getChildren().add(locationView);
+		centerView.getChildren().add(hero);
 		setCenter(centerView);
+		
 		centerView.minHeightProperty().bind(heightProperty());
 		centerView.minWidthProperty().bind(widthProperty());
 	}
 	
-	public void setLocView(View locView) {
-		getChildren().set(0, (Node) locView);
+	public void setLocationView(LocationView locationView) {
+		((Pane) getCenter()).getChildren().set(0, locationView);
 	}
-	
-	public void setPlayerView(View playerView) {
-		getChildren().set(1, (Node) playerView);
-	}
-
 }
