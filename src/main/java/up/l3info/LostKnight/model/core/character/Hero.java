@@ -10,7 +10,7 @@ import up.l3info.LostKnight.mvc.Model;
  * @author Thomas
  */
 
-public class Hero extends AttackableCharacter implements Model{
+public class Hero extends AttackableCharacter{
 
 	private static final int MAX_STAMINA = 100;
 	private int stamina;
@@ -151,11 +151,5 @@ public class Hero extends AttackableCharacter implements Model{
 	 */
 	public void showStamina() {
 		System.out.println("\033[0;1mYou have " + getStamina() + " stamina points out of " + MAX_STAMINA + ".\033[0;2m");
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }

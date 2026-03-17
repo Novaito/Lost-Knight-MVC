@@ -3,7 +3,10 @@ package up.l3info.LostKnight.view;
 import java.util.List;
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import up.l3info.LostKnight.mvc.View;
 
 public class LocationView extends Pane implements View {
@@ -29,9 +32,15 @@ public class LocationView extends Pane implements View {
 	}
 
 	private void init(String imgSrc, List<View> environmentViews) {
-		setStyle("-fx-background-image: url(" + imgSrc + ");");
-		for (View elementView : environmentViews) {
-			getChildren().add((Node) elementView);
+		Rectangle playingFrame = new Rectangle(700, 700);
+		ImagePattern pattern = new ImagePattern(new Image(imgSrc));
+		playingFrame.setFill(pattern);
+		getChildren().add(playingFrame);
+		
+		if (environmentViews != null) {
+			for (View elementView : environmentViews) {
+				getChildren().add((Node) elementView);
+			}			
 		}
 	}
 }
