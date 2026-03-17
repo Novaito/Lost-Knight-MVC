@@ -55,6 +55,14 @@ public class Game implements Model{
 	public Location getCurrentLocation() {
 		return this.currentLocation;
 	}
+
+	/**
+	 * Returns the spawn of the game
+	 *
+	 * @return The spawn
+	 *
+	 * */
+	public Location getSpawn() { return this.spawn; }
 	
 
 	/** 
