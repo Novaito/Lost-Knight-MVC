@@ -1,11 +1,18 @@
 package up.l3info.LostKnight.view;
 
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import up.l3info.LostKnight.mvc.View;
 
-public class CharactersView extends Pane implements View {
+public class CharactersView extends VBox implements View {
 
+	private ProgressBar hpProgressBar;
+	
 	@Override
 	public void hide() {
 		setVisible(false);
@@ -18,18 +25,50 @@ public class CharactersView extends Pane implements View {
 	
 	private CharactersView() {
 		super();
+		setSpacing(3);
 	}
 	
-	public static CharactersView create(String imgSrc, SimpleIntegerProperty posX, SimpleIntegerProperty posY) {
+	public static CharactersView create(String imgSrc, int posX, int posY, double lifePercentage) {
 		CharactersView playerView = new CharactersView();
-		playerView.init(imgSrc, posX, posY);
+		playerView.init(imgSrc, posX, posY, lifePercentage);
 		return playerView;
 	}
 	
-	private void init(String imgSrc, SimpleIntegerProperty posX, SimpleIntegerProperty posY) {
-		setStyle("-fx-background-image: url(" + imgSrc + ");");
-		layoutXProperty().bind(posX);
-		layoutYProperty().bind(posY);
+	private void init(String imgSrc, int posX, int posY, double lifePercentage) {
+		// Image of Sprite 
+		String url = getClass().getResource(imgSrc).toExternalForm();
+		Rectangle characterFrame = new Rectangle(64, 64);
+		ImagePattern pattern = new ImagePattern(new Image(url));
+		characterFrame.setFill(pattern);
+		Pane sprite = new Pane();
+		sprite.getChildren().add(characterFrame);
+		
+		// HP Bar
+		hpProgressBar = new ProgressBar();
+		hpProgressBar.setMinHeight(15);
+		setProgress(lifePercentage);
+		
+		getChildren().addAll(sprite, hpProgressBar);
+		setLayoutX(posX);
+		setLayoutY(posY);
+		
+	}
+	
+	private void setProgress(double lifePercentage) {
+		hpProgressBar.setProgress(lifePercentage);
+		String colorCSS;
+		if (lifePercentage > 0.3) {
+			colorCSS = ("-fx-accent:#adff2f;");
+		} else {
+			colorCSS = ("-fx-accent:#ff4500;");
+		}
+		hpProgressBar.setStyle(
+				"-fx-control-inner-background: #222;"
+				+ colorCSS);
+	}
+	
+	public DoubleProperty progressProperty() {
+		return hpProgressBar.progressProperty();
 	}
 	
 	public void setX(int posX) {
@@ -38,5 +77,9 @@ public class CharactersView extends Pane implements View {
 	
 	public void setY(int posY) {
 		setLayoutY(posY);
+	}
+	
+	public void setHp(double lifePercentage) {
+		hpProgressBar.setProgress(lifePercentage);
 	}
 }

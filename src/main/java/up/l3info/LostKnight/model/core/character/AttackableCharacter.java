@@ -95,6 +95,14 @@ public abstract class AttackableCharacter extends GameCharacter implements Attac
 	public int getHp() {
 		return this.hp;
 	}
+	
+	/**
+	 * Return the max of hp the can have.
+	 * @return The max of hp
+	 */
+	public int getMaxHp() {
+		return this.MAX_HP;
+	}
 
 	/**
 	 * Set the new current level of hp of the character.

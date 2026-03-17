@@ -19,7 +19,7 @@ import up.l3info.LostKnight.mvc.Model;
  * @author Noé
  * 
  * */
-public class Game implements Model{
+public class Game{
 
 	/**
 	 * Scanner isn't constant because it has to be modified in the Junit test.
@@ -159,6 +159,19 @@ public class Game implements Model{
 		}
 		return currentLocation.getItem(itemName) != null;
 		
+	}
+	
+	public boolean isItemReachable(String itemName) {
+		return isReachableObject(hero, currentLocation.getItem(itemName));
+	}
+	
+	public boolean isReachableObject(GameObject g1, GameObject g2) {
+		return Math.sqrt((g2.getPosX() - g1.getPosX()) * (g2.getPosX() - g1.getPosX())
+				+ (g2.getPosY() - g1.getPosY()) * (g2.getPosY() - g1.getPosY())) < 20;
+	}
+	
+	public Hero getHero() {
+		return this.getHero();
 	}
 	
 
@@ -375,12 +388,6 @@ public class Game implements Model{
     		+ "\n║\033[95;2m                                                                                \"Y88P\"                     \033[0;1m║"
     		+ "\n╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝\033[0;2m"
 		);
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 
 
