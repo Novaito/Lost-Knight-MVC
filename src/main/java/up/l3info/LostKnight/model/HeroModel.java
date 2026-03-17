@@ -3,7 +3,7 @@ package up.l3info.LostKnight.model;
 import up.l3info.LostKnight.model.core.character.Hero;
 import up.l3info.LostKnight.mvc.Model;
 
-public class HeroModel  implements Model {
+public class HeroModel implements Model {
 
 	private Hero hero;
 	
@@ -21,7 +21,10 @@ public class HeroModel  implements Model {
 	
 	public int posYValue() {
 		return hero.getPosY();
-		 
+	}
+	
+	public double hpPercentage() {
+		return hero.getHp() * 100 / hero.getMaxHp();
 	}
 	
 	public int hpValue() {
