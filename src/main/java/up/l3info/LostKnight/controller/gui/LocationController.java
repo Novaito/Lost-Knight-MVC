@@ -14,6 +14,8 @@ import up.l3info.LostKnight.mvc.View;
 import up.l3info.LostKnight.view.LocationView;
 
 public class LocationController extends Controller<LocationModel, LocationView>{
+	
+	private static List<Controller<? extends Model, ? extends View>> subControllers;
 
 	public LocationController(LocationModel loc, LocationView locView) {
 		super(loc, locView);
@@ -32,7 +34,7 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 		
 		Location loc = locationModel.getLocation();
 		
-		List<Controller<? extends Model, ? extends View>> subControllers = new ArrayList<>();
+		subControllers = new ArrayList<>();
 		for (Item item : loc.getItems().values()) {
 			subControllers.add(ItemController.create(item));
 		}
@@ -47,6 +49,14 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 		
 		return subControllers;
 		
+	}
+	
+	public List<Controller<? extends Model, ? extends View>> getSubControllers() {
+		return subControllers;
+	}
+	
+	public void setNewSubControllers(List<Controller<? extends Model, ? extends View>> newSubControllers) {
+		subControllers = newSubControllers;
 	}
 	
 	
