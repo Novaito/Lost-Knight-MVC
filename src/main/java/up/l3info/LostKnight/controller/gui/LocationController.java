@@ -3,6 +3,7 @@ package up.l3info.LostKnight.controller.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import up.l3info.LostKnight.model.LocationModel;
 import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.map.Exit;
@@ -12,13 +13,13 @@ import up.l3info.LostKnight.mvc.Model;
 import up.l3info.LostKnight.mvc.View;
 import up.l3info.LostKnight.view.LocationView;
 
-public class LocationController extends Controller<Location, LocationView>{
+public class LocationController extends Controller<LocationModel, LocationView>{
 
-	public LocationController(Location loc, LocationView locView) {
+	public LocationController(LocationModel loc, LocationView locView) {
 		super(loc, locView);
 	}
 	
-	public static LocationController create(Location loc) {
+	public static LocationController create(LocationModel loc) {
 		
 		List<Controller<? extends Model, ? extends View>> subCont = createSubControllers(loc);
 		
@@ -27,7 +28,10 @@ public class LocationController extends Controller<Location, LocationView>{
 		return locationController;
 	}
 	
-	private static List<Controller<? extends Model, ? extends View>> createSubControllers(Location loc){
+	private static List<Controller<? extends Model, ? extends View>> createSubControllers(LocationModel locationModel){
+		
+		Location loc = locationModel.getLocation();
+		
 		List<Controller<? extends Model, ? extends View>> subControllers = new ArrayList<>();
 		for (Item item : loc.getItems().values()) {
 			subControllers.add(ItemController.create(item));

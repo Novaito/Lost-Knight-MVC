@@ -109,7 +109,7 @@ public class Game{
 		if(hero.isDead()) {
 			StringBuilder delimiter = new StringBuilder();
 			String s = "You died";
-			delimiter.repeat("═", s.length()+2);
+			//delimiter.repeat("═", s.length()+2);
 			System.out.println("\033[91m╔" + delimiter + "╗\033[0m");
 			System.out.println("  \033[41;1mYou died\033[0;2m");
 			System.out.println("\033[91m╚" + delimiter + "╝\033[0m");

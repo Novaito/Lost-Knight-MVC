@@ -13,7 +13,7 @@ import java.util.Map;
  * 
  * @author Noé
  */
-public class Location implements LookableObject, Model{
+public class Location implements LookableObject{
 
 	private Map<String, Item> items;
 	private Map<String, GameCharacter> characters;
@@ -133,7 +133,7 @@ public class Location implements LookableObject, Model{
 	@Override
 	public void look() {
 		StringBuilder delimiter = new StringBuilder();
-		delimiter.repeat("═", getName().length() + 2);
+		//delimiter.repeat("═", getName().length() + 2);
 		System.out.println(
 				"╔" + delimiter + "╗"
 				+ "\n  \033[96;1m" + getName() + "\033[0;2m"
@@ -163,11 +163,5 @@ public class Location implements LookableObject, Model{
 		}
 	}
 
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

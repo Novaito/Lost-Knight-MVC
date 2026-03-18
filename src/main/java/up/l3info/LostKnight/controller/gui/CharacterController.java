@@ -1,12 +1,13 @@
 package up.l3info.LostKnight.controller.gui;
 
+import up.l3info.LostKnight.model.CharacterModel;
 import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.CharactersView;
 
-public class CharacterController extends Controller<GameCharacter, CharactersView> {
+public class CharacterController extends Controller<CharacterModel, CharactersView> {
 
-	public CharacterController(GameCharacter p_model, CharactersView p_view) {
+	public CharacterController(CharacterModel p_model, CharactersView p_view) {
 		super(p_model, p_view);
 		// TODO Auto-generated constructor stub
 	}
@@ -17,8 +18,9 @@ public class CharacterController extends Controller<GameCharacter, CharactersVie
 		
 	}
 	
-	public static CharacterController create(GameCharacter character) {
-		CharacterController characterController = new CharacterController(character, CharactersView.create(null, character.getPosX(), character.getPosY()));//TODO les textures
+	public static CharacterController create(CharacterModel character) {
+		CharacterController characterController = 
+				new CharacterController(character, CharactersView.create(null, character.getGameCharacter().getPosX(), character.getGameCharacter().getPosY(), 0));//TODO les textures
 		
 		return characterController;
 	}
