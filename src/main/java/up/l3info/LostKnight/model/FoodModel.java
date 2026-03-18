@@ -10,14 +10,14 @@ public class FoodModel implements Model {
 	@Override
 	public void run() {}
 
-	private FoodModel(Food food) {
+	public FoodModel(Food food) {
 		foodItem = food;
 	}
 	
-	public static FoodModel create(Food food) {
+	/*public static FoodModel create(Food food) {
 		FoodModel itemModel = new FoodModel(food);
 		return itemModel;
-	}
+	}*/
 	
 	public String foodName() {
 		return foodItem.getName();
@@ -33,5 +33,9 @@ public class FoodModel implements Model {
 	
 	public int posYValue() {
 		return foodItem.getPosY();
+	}
+	
+	public Food getFood() {
+		return foodItem;
 	}
 }

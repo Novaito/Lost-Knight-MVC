@@ -30,6 +30,8 @@ public class LocationView extends Pane implements View {
 		locationView.init(imgSrc, environmentViews);
 		return locationView;
 	}
+	
+	//TODO il faut une fonction qui update les subviews, dans le cas ou on rammasse un item par exemple
 
 	private void init(String imgSrc, List<View> environmentViews) {
 		Rectangle playingFrame = new Rectangle(700, 700);

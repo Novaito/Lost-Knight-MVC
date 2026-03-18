@@ -35,6 +35,16 @@ public class GameModel implements Model{
 		return game.getCurrentLocation();
 	}
 	
+
+	public boolean canHeroMove(int posX, int posY) {
+		return game.canHeroMove(posX, posY);
+	}
+
+	public void heroMove(int posX, int posY) {
+		this.game.heroMove(posX, posY);
+		
+	}
+	
 	
 
 }

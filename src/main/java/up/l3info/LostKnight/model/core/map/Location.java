@@ -20,6 +20,8 @@ public class Location implements LookableObject{
 	private Map<String, Exit> exits;
 	private String name;
 	private String description;
+	private int sizeX;
+	private int sizeY;
 	
 	/**
 	 * This constructor creates a location with its name and its description
@@ -27,12 +29,14 @@ public class Location implements LookableObject{
 	 * @param name The name of the location
 	 * @param description The description of the location
 	 */
-	public Location(String name , String description) {
+	public Location(String name , String description, int sizeX, int sizeY) {
 		this.name = name;
 		this.description = description;
 		this.exits = new CaseInsensitiveHashMap<Exit>();
 		this.items = new CaseInsensitiveHashMap<Item>();
 		this.characters = new CaseInsensitiveHashMap<GameCharacter>();
+		this.sizeX = sizeX;
+		this.sizeY = sizeY;
 	}
 	
 
@@ -59,6 +63,14 @@ public class Location implements LookableObject{
 	public String getName() {
 		return this.name;
 	}
+	
+	public int getSizeX() {
+		return sizeX;
+	}
+	
+	public int getSizeY() {
+		return sizeY;
+	}
 
 	/**
 	 * Returns the Item in this location with the name corresponding. Null if not match.
@@ -71,7 +83,7 @@ public class Location implements LookableObject{
 	}
 	
 	public Map<String, Item> getItems(){
-		return this.getItems();
+		return this.items;
 	}
 
 	/**

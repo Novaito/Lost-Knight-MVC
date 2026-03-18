@@ -27,6 +27,8 @@ public class Game{
 	 */
 	private static Scanner SCANNER = new Scanner(System.in);
 	
+	private static final int TILE_SIZE = 50; //TODO arbitraire, à modifier
+	
 	private Hero hero;
 	private Commands commands;
 	private Location currentLocation;
@@ -171,7 +173,18 @@ public class Game{
 	}
 	
 	public Hero getHero() {
-		return this.getHero();
+		return this.hero;
+	}
+	
+	public boolean canHeroMove(int posX, int posY) {
+		return posX >= 0 && posY >= 0 
+				&& posX <= currentLocation.getSizeX() * TILE_SIZE 
+				&& posY <= currentLocation.getSizeY() * TILE_SIZE;
+	}
+	
+	public void heroMove(int posX, int posY) {
+		this.hero.setPosX(posX);
+		this.hero.setPosY(posY);
 	}
 	
 

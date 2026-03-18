@@ -18,7 +18,7 @@ public abstract class Controller<M extends Model, V extends View > {
 		protected final V view;
 		
 		/// Sub-controllers
-		protected final List<Controller> subControllers = new ArrayList<>();
+		protected List<Controller<? extends Model, ? extends View >> subControllers = new ArrayList<>();
 
 
 		/// Custom constructor
