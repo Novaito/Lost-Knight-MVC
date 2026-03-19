@@ -52,4 +52,18 @@ public class LocationView extends Pane implements View {
 	public void updateView(View viewPoping) {
 		getChildren().remove(getChildren().indexOf((Node)viewPoping));
 	}
+	
+	public void updateViews(List<View> environmentViews) {
+		
+		System.out.println(getChildren().size());
+		getChildren().removeIf(node -> node instanceof ItemView || node instanceof CharactersView);
+		System.out.println(getChildren().size());
+
+		this.environmentViews.removeIf(view -> view instanceof ItemView || view instanceof CharactersView);
+		
+		for (View view : environmentViews) {
+			getChildren().add((Node) view);
+			this.environmentViews.add(view);
+		}
+	}
 }

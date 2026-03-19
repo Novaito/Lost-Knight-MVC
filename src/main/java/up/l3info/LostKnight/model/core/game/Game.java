@@ -293,6 +293,7 @@ public class Game{
 		
 		if (item instanceof Food) {
 			targetChar.setHp(targetChar.getHp() + ((Food)item).getFoodPoints());
+			currentLocation.takeItem(itemName);
 		}
 	}
 	
@@ -360,7 +361,7 @@ public class Game{
 	/**
 	 * Tries to look an object if it implements the interface LookableObject
 	 * 
-	 * @param s The name of the object
+	 * @param s The name of the objectenvironmentViews
 	 */
 	public void look(String s) {
 		LookableObject lo;

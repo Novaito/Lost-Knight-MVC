@@ -63,6 +63,7 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 	public void updateSubControllers() {
 		subControllers = createSubControllers(getModel());
 		//TODO update les subviews de locationView
+		getView().updateViews(extractSubViews(subControllers) );
 
 	}
 	
