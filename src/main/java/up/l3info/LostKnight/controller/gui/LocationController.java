@@ -20,7 +20,6 @@ import up.l3info.LostKnight.view.LocationView;
 
 public class LocationController extends Controller<LocationModel, LocationView>{
 	
-	private static List<Controller<? extends Model, ? extends View>> subControllers;
 
 	public LocationController(LocationModel loc, LocationView locView, List<Controller<? extends Model, ? extends View>> subControllers) {
 		super(loc, locView);
@@ -40,7 +39,7 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 		
 		Location loc = locationModel.getLocation();
 		
-		subControllers = new ArrayList<>();
+		List<Controller<? extends Model, ? extends View>> subControllers = new ArrayList<>();
 		for (Item item : loc.getItems().values()) {
 			if (item instanceof Food) {				
 				subControllers.add(FoodController.create(new FoodModel((Food)item)));
@@ -61,20 +60,15 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 		
 	}
 	
-<<<<<<< HEAD
 	public void updateSubControllers() {
 		subControllers = createSubControllers(getModel());
 		//TODO update les subviews de locationView
-=======
+
+	}
+	
 	public List<Controller<? extends Model, ? extends View>> getSubControllers() {
 		return subControllers;
 	}
-	
-	public void setNewSubControllers(List<Controller<? extends Model, ? extends View>> newSubControllers) {
-		subControllers = newSubControllers;
->>>>>>> branch 'main' of https://github.com/Novaito/Lost-Knight-MVC.git
-	}
-	
 	
 	@Override
 	public void init() {
