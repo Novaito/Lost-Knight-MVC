@@ -41,6 +41,7 @@ public class GameView extends BorderPane implements View {
 		String urlProfileHero = getClass().getResource("/img/profileHero.png").toExternalForm();
 		HeroStateBar heroStateBar = HeroStateBar.create(urlProfileHero, hero.progressProperty().getValue());
 		heroStateBar.progressProperty().bind(hero.progressProperty());
+		heroStateBar.progressStyleProperty().bind(hero.progressStyleProperty());
 		SideBarGame sideBarGame = SideBarGame.create(childsElement, heroStateBar);
 		setLeft(sideBarGame);
 		

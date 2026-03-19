@@ -1,6 +1,7 @@
 package up.l3info.LostKnight.view;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
@@ -72,6 +73,10 @@ public class CharactersView extends VBox implements View {
 		return hpProgressBar.progressProperty();
 	}
 	
+	public StringProperty progressStyleProperty() {
+		return hpProgressBar.styleProperty();
+	}
+	
 	public void setX(int posX) {
 		setLayoutX(posX);
 	}
@@ -81,6 +86,6 @@ public class CharactersView extends VBox implements View {
 	}
 	
 	public void setHp(double lifePercentage) {
-		hpProgressBar.setProgress(lifePercentage);
+		setProgress(lifePercentage);
 	}
 }
