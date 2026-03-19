@@ -50,7 +50,6 @@ public class GameController extends Controller<GameModel, GameView>{
 				((FoodController) controller).getView().setOnMouseClicked(event -> {
 					useItem(((FoodController) controller).getModel().foodName());
 					//getLocationController().getView().updateView(((FoodController) controller).getView());
-					System.out.println(getHeroController().getModel().hpPercentage());
 					event.consume();
 				});
 			}
