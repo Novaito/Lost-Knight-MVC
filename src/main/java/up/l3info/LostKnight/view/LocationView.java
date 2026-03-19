@@ -10,8 +10,6 @@ import javafx.scene.shape.Rectangle;
 import up.l3info.LostKnight.mvc.View;
 
 public class LocationView extends Pane implements View {
-
-	private List<View> environmentViews;
 	
 	@Override
 	public void hide() {
@@ -39,29 +37,20 @@ public class LocationView extends Pane implements View {
 		Rectangle playingFrame = new Rectangle(500, 500);
 		ImagePattern pattern = new ImagePattern(new Image(imgSrc));
 		playingFrame.setFill(pattern);
-		this.environmentViews = environmentViews;
 		getChildren().add(playingFrame);
 		
-		if (this.environmentViews != null) {
+		if (environmentViews != null) {
 			for (View elementView : environmentViews) {
 				getChildren().add((Node) elementView);
 			}			
 		}
 	}
 	
-	public void updateView(View viewPoping) {
-		getChildren().remove(getChildren().indexOf((Node)viewPoping));
-	}
-	
 	public void updateViews(List<View> environmentViews) {
-		
 		getChildren().removeIf(node -> node instanceof ItemView || node instanceof CharactersView);
-
-		this.environmentViews.removeIf(view -> view instanceof ItemView || view instanceof CharactersView);
 		
 		for (View view : environmentViews) {
 			getChildren().add((Node) view);
-			this.environmentViews.add(view);
 		}
 	}
 }
