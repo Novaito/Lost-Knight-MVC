@@ -19,7 +19,7 @@ public class FoodController extends Controller<FoodModel, ItemView>{
 	
 	public static FoodController create(FoodModel foodModel) {
 		//TODO graphic
-		FoodController itemController = new FoodController(foodModel, ItemView.create("/img/porc.png", foodModel.getFood().getPosX(), foodModel.getFood().getPosY()));
+		FoodController itemController = new FoodController(foodModel, ItemView.create("/img/pork.png", foodModel.getFood().getPosX(), foodModel.getFood().getPosY()));
 		
 		return itemController;
 		

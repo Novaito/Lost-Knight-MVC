@@ -45,8 +45,8 @@ public class GameController extends Controller<GameModel, GameView>{
 		}
 		
 		getLocationController().getView().setOnMouseClicked(event ->{
-			heroMove((int)event.getX(), (int)event.getY());
-			System.out.println("clickX: " + this.getModel().getHero().getPosX() + " clickY: " + event.getY());
+			heroMove(((int)event.getX()) - 64, (int)event.getY() - 64);
+			System.out.println("[x: " + this.getModel().getHero().getPosX() + ", y: " + this.getModel().getHero().getPosY() + "]");
 		});
 		
 		

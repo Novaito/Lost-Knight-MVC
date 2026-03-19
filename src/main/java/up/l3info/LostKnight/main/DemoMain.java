@@ -22,13 +22,11 @@ public class DemoMain extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Location spawn = new Location("Meadow", "A cool meadow", 10, 10);
+		Location spawn = new Location("Meadow", "A cool meadow", 700, 700);
 		Hero hero = new Hero("Hero", 100, "hello im hero", 100, 100);
 		
-		Food apple = new Food("Apple", 20, 200, 100);
+		Food apple = new Food("Apple", 20, 300, 100);
 		spawn.addItem(apple);
-		
-		System.out.println("ici");
 		Game game = new Game(hero, spawn);
 		
 		Controller<GameModel, GameView> mainController = GameController.create(new GameModel(game));

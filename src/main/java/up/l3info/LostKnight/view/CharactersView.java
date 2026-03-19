@@ -25,7 +25,7 @@ public class CharactersView extends VBox implements View {
 	
 	private CharactersView() {
 		super();
-		setSpacing(3);
+		setSpacing(7);
 	}
 	
 	public static CharactersView create(String imgSrc, int posX, int posY, double lifePercentage) {
@@ -45,10 +45,11 @@ public class CharactersView extends VBox implements View {
 		
 		// HP Bar
 		hpProgressBar = new ProgressBar();
-		hpProgressBar.setMinHeight(15);
+		hpProgressBar.setMaxHeight(10);;
+		hpProgressBar.setMaxWidth(64);
 		setProgress(lifePercentage);
 		
-		getChildren().addAll(sprite, hpProgressBar);
+		getChildren().addAll(hpProgressBar, sprite);
 		setLayoutX(posX);
 		setLayoutY(posY);
 		

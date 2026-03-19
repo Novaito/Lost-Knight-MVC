@@ -34,11 +34,11 @@ public class LocationView extends Pane implements View {
 	//TODO il faut une fonction qui update les subviews, dans le cas ou on rammasse un item par exemple
 
 	private void init(String imgSrc, List<View> environmentViews) {
-		Rectangle playingFrame = new Rectangle(700, 700);
+		Rectangle playingFrame = new Rectangle(500, 500);
 		ImagePattern pattern = new ImagePattern(new Image(imgSrc));
 		playingFrame.setFill(pattern);
-		getChildren().add(playingFrame);
 		
+		getChildren().add(playingFrame);
 		if (environmentViews != null) {
 			for (View elementView : environmentViews) {
 				getChildren().add((Node) elementView);

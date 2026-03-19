@@ -30,7 +30,7 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 		
 		List<Controller<? extends Model, ? extends View>> subCont = createSubControllers(loc);
 		
-		LocationController locationController = new LocationController(loc, LocationView.create("/img/grass.png", extractSubViews(subCont)), subCont);
+		LocationController locationController = new LocationController(loc, LocationView.create("/img/locationTest.png", extractSubViews(subCont)), subCont);
 		
 		return locationController;
 	}

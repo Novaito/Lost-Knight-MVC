@@ -1,6 +1,9 @@
 package up.l3info.LostKnight.view;
 
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import up.l3info.LostKnight.mvc.View;
 
 public class ItemView extends Pane implements View {
@@ -26,7 +29,12 @@ public class ItemView extends Pane implements View {
 	}
 	
 	private void init(String imgSrc, int posX, int posY) {
-		setStyle("-fx-background-image: url(" + imgSrc + ");");
+		String url = getClass().getResource(imgSrc).toExternalForm();
+		Rectangle itemFrame = new Rectangle(64, 64);
+		ImagePattern pattern = new ImagePattern(new Image(url));
+		itemFrame.setFill(pattern);
+		getChildren().add(itemFrame);
+		
 		setLayoutX(posX);
 		setLayoutY(posY);
 	}

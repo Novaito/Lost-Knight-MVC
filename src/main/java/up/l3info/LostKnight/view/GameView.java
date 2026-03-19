@@ -49,8 +49,8 @@ public class GameView extends BorderPane implements View {
 		centerView.getChildren().add(hero);
 		setCenter(centerView);
 		
-		centerView.minHeightProperty().bind(heightProperty());
-		centerView.minWidthProperty().bind(widthProperty());
+		centerView.minHeightProperty().bind(minHeightProperty());
+		centerView.minWidthProperty().bind(minWidthProperty());
 	}
 	
 	public void setLocationView(LocationView locationView) {
