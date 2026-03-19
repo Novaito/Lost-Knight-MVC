@@ -22,8 +22,9 @@ public class DemoMain extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Location spawn = new Location("Meadow", "A cool meadow", 700, 700);
+		Location spawn = new Location("Meadow", "A cool meadow", 15, 15); //TODO: à corriger nb de tile w x h
 		Hero hero = new Hero("Hero", 100, "hello im hero", 100, 100);
+		hero.setHp(70);
 		
 		Food apple = new Food("Apple", 20, 300, 100);
 		spawn.addItem(apple);
