@@ -24,11 +24,15 @@ public class DemoMain extends Application{
 		
 		Location spawn = new Location("Meadow", "A cool meadow", 15, 15); //TODO: à corriger nb de tile w x h
 		Hero hero = new Hero("Hero", 100, "hello im hero", 100, 100);
-		hero.setHp(10);
+		hero.setHp(20);
 
 		
-		Food apple = new Food("Apple", 20, 300, 100);
-		spawn.addItem(apple);
+		Food pig_1 = new Food("pig_1", 20, 300, 100);
+		Food pig_2 = new Food("pig_2", 20, 200, 140);
+		Food pig_3 = new Food("pig_3", 20, 350, 400);
+		spawn.addItem(pig_1);
+		spawn.addItem(pig_2);
+		spawn.addItem(pig_3);
 		Game game = new Game(hero, spawn);
 		
 		Controller<GameModel, GameView> mainController = GameController.create(new GameModel(game));

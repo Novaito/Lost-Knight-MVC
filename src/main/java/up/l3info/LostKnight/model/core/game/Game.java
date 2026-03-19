@@ -1,11 +1,13 @@
 package up.l3info.LostKnight.model.core.game;
 
+import java.awt.TextArea;
 import java.util.*;
 
 import up.l3info.LostKnight.model.core.character.*;
 import up.l3info.LostKnight.model.core.items.Chest;
 import up.l3info.LostKnight.model.core.items.Consumnable;
 import up.l3info.LostKnight.model.core.items.Container;
+import up.l3info.LostKnight.model.core.items.Food;
 import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.items.Key;
 import up.l3info.LostKnight.model.core.items.Weapon;
@@ -28,6 +30,7 @@ public class Game{
 	private static Scanner SCANNER = new Scanner(System.in);
 	
 	private static final int TILE_SIZE = 50; //TODO arbitraire, à modifier
+	private static final int DISTANCE_TO_INTERACT = 200;
 	
 	private Hero hero;
 	private Commands commands;
@@ -169,7 +172,7 @@ public class Game{
 	
 	public boolean isReachableObject(GameObject g1, GameObject g2) {
 		return Math.sqrt((g2.getPosX() - g1.getPosX()) * (g2.getPosX() - g1.getPosX())
-				+ (g2.getPosY() - g1.getPosY()) * (g2.getPosY() - g1.getPosY())) < 20;
+				+ (g2.getPosY() - g1.getPosY()) * (g2.getPosY() - g1.getPosY())) < DISTANCE_TO_INTERACT;
 	}
 	
 	public Hero getHero() {
@@ -272,12 +275,33 @@ public class Game{
 		this.stopGame = true;
 	}
 
+	public void use(String itemName, String target) {
+		Item item = currentLocation.getItem(itemName);
+		AttackableCharacter targetChar;
+		if (target.equalsIgnoreCase("hero") || target.equals("")) {
+			targetChar = getHero();
+		}else {
+			GameCharacter tempChar = currentLocation.getCharacter(target);
+			if(tempChar == null) {
+				throw new NullPointerException();
+			}else if(tempChar instanceof AttackableCharacter) {
+				targetChar = (AttackableCharacter) tempChar;
+			}else {
+				throw new Error("Peut pas utiliser ca sur ce character");
+			}
+		}
+		
+		if (item instanceof Food) {
+			targetChar.setHp(targetChar.getHp() + ((Food)item).getFoodPoints());
+		}
+	}
+	
 	/**
 	 * Tries to use an item from the hero's inventory on a target
 	 * 
 	 * @param itemName The name of the Item
 	 * @param target The target to use the item on
-	 */
+	 *
 	public void use(String itemName, String target) {
 		// TODO - implement Game.use
 		AttackableCharacter tar;
@@ -330,7 +354,7 @@ public class Game{
 			((Consumnable) item).use(hero, tar);
 		}
 		
-	}
+	}*/
 
 
 	/**

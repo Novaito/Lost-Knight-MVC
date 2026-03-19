@@ -35,8 +35,7 @@ public class GameController extends Controller<GameModel, GameView>{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
-		for (Controller controller : subControllers) {
+		for (Controller controller : getLocationController().getSubControllers()) {
 			if (controller instanceof FoodController) {
 				((FoodController) controller).getView().setOnMouseClicked(event -> {
 					useItem(((FoodController) controller).getModel().foodName());
@@ -46,7 +45,6 @@ public class GameController extends Controller<GameModel, GameView>{
 		
 		getLocationController().getView().setOnMouseClicked(event ->{
 			heroMove(((int)event.getX()) - 64, (int)event.getY() - 64);
-			System.out.println("[x: " + this.getModel().getHero().getPosX() + ", y: " + this.getModel().getHero().getPosY() + "]");
 		});
 		
 		
