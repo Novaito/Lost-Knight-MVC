@@ -11,6 +11,8 @@ import up.l3info.LostKnight.mvc.View;
 
 public class LocationView extends Pane implements View {
 
+	private List<View> environmentViews;
+	
 	@Override
 	public void hide() {
 		setVisible(false);
@@ -37,12 +39,17 @@ public class LocationView extends Pane implements View {
 		Rectangle playingFrame = new Rectangle(500, 500);
 		ImagePattern pattern = new ImagePattern(new Image(imgSrc));
 		playingFrame.setFill(pattern);
-		
+		this.environmentViews = environmentViews;
 		getChildren().add(playingFrame);
-		if (environmentViews != null) {
+		
+		if (this.environmentViews != null) {
 			for (View elementView : environmentViews) {
 				getChildren().add((Node) elementView);
 			}			
 		}
+	}
+	
+	public void updateView(View viewPoping) {
+		getChildren().remove(getChildren().indexOf((Node)viewPoping));
 	}
 }
