@@ -35,6 +35,16 @@ public class GameController extends Controller<GameModel, GameView>{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
+		initItemInteraction();
+		
+		getLocationController().getView().setOnMouseClicked(event ->{
+			heroMove(((int)event.getX()) - 64, (int)event.getY() - 64);
+		});
+		
+		
+	}
+	
+	private void initItemInteraction() {
 		for (Controller controller : getLocationController().getSubControllers()) {
 			if (controller instanceof FoodController) {
 				((FoodController) controller).getView().setOnMouseClicked(event -> {
@@ -42,12 +52,6 @@ public class GameController extends Controller<GameModel, GameView>{
 				});
 			}
 		}
-		
-		getLocationController().getView().setOnMouseClicked(event ->{
-			heroMove(((int)event.getX()) - 64, (int)event.getY() - 64);
-		});
-		
-		
 	}
 	
 	public static GameController create(GameModel game) {
@@ -98,6 +102,7 @@ public class GameController extends Controller<GameModel, GameView>{
 		if(this.model.canUseItem(itemName)) {
 			this.model.useItem(itemName);
 			getLocationController().updateSubControllers();
+			initItemInteraction();
 			this.heroLifeChanged.set(true);
 		}
 	}
