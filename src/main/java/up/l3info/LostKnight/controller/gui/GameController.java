@@ -35,7 +35,8 @@ public class GameController extends Controller<GameModel, GameView>{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		initItemInteraction();
+		
+		initInteractions();
 		
 		getLocationController().getView().setOnMouseClicked(event ->{
 			heroMove(((int)event.getX()) - 64, (int)event.getY() - 64);
@@ -44,11 +45,28 @@ public class GameController extends Controller<GameModel, GameView>{
 		
 	}
 	
+	private void initInteractions() {
+		initItemInteraction();
+		initEnemyInteraction();
+	}
+	
 	private void initItemInteraction() {
 		for (Controller controller : getLocationController().getSubControllers()) {
 			if (controller instanceof FoodController) {
 				((FoodController) controller).getView().setOnMouseClicked(event -> {
 					useItem(((FoodController) controller).getModel().foodName());
+					//getLocationController().getView().updateView(((FoodController) controller).getView());
+					event.consume();
+				});
+			}
+		}
+	}
+	
+	private void initEnemyInteraction() {
+		for (Controller controller : getLocationController().getSubControllers()) {
+			if (controller instanceof EnemyController) {
+				((EnemyController) controller).getView().setOnMouseClicked(event -> {
+					attackCharacter(((EnemyController)controller).getModel().getName());
 					//getLocationController().getView().updateView(((FoodController) controller).getView());
 					event.consume();
 				});
@@ -104,8 +122,17 @@ public class GameController extends Controller<GameModel, GameView>{
 		if(this.model.canUseItem(itemName)) {
 			this.model.useItem(itemName);
 			getLocationController().updateSubControllers();
-			initItemInteraction();
+			initInteractions();
 			this.heroLifeChanged.set(true);
+		}
+	}
+	
+	
+	private void attackCharacter(String characterName) {
+		if(this.model.characterExists(characterName) && this.model.isCharacterReachable(characterName)) {
+			this.model.heroAttack(characterName);
+			getLocationController().updateSubControllers();
+			initInteractions();
 		}
 	}
 

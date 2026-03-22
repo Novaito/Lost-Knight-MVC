@@ -16,6 +16,7 @@ public abstract class AttackableCharacter extends GameCharacter implements Attac
 	private int MAX_HP;
 	private int hp;
 	private int weakness;
+	private Weapon equipedWeapon = null;
 
 	/**
 	 * This constructor creates an attackable character with his heal points.
@@ -160,6 +161,14 @@ public abstract class AttackableCharacter extends GameCharacter implements Attac
 				System.out.println(getName() + " receive \033[92;1m" + -weakness + "\033[0;2m less damage points.");
 			}
 		}
+	}
+	
+	public void setWeapon(Weapon weapon) {
+		this.equipedWeapon = weapon;
+	}
+	
+	public Weapon getWeapon() {
+		return this.equipedWeapon;
 	}
 	
 	/**

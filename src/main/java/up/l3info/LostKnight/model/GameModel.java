@@ -45,6 +45,20 @@ public class GameModel implements Model{
 		
 	}
 	
+	public boolean characterExists(String characterName) {
+		return game.characterExists(characterName);
+	}
+	
+	public boolean isCharacterReachable(String characterName) {
+		return game.isCharacterReachable(characterName);
+	}
+	
+	public void heroAttack(String characterName) {
+		game.attack("hero", characterName);
+	}
+	
+	
+	
 	
 
 }

@@ -3,10 +3,11 @@ package up.l3info.LostKnight.controller.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import up.l3info.LostKnight.model.CharacterModel;
+import up.l3info.LostKnight.model.EnemyModel;
 import up.l3info.LostKnight.model.FoodModel;
 import up.l3info.LostKnight.model.LocationModel;
 import up.l3info.LostKnight.model.WeaponModel;
+import up.l3info.LostKnight.model.core.character.Enemy;
 import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.model.core.items.Food;
 import up.l3info.LostKnight.model.core.items.Item;
@@ -53,7 +54,8 @@ public class LocationController extends Controller<LocationModel, LocationView>{
 		}
 		
 		for (GameCharacter character : loc.getCharacters().values()) {
-			subControllers.add(CharacterController.create(new CharacterModel(character)));
+			if(character instanceof Enemy)
+			subControllers.add(EnemyController.create(new EnemyModel((Enemy)character)));
 		}
 		
 		return subControllers;

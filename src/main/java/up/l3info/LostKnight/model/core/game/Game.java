@@ -152,8 +152,7 @@ public class Game{
 	}
 	
 	public boolean isCharacterReachable(String characterName) {
-		//TODO
-		return false;
+		return isReachableObject(hero, currentLocation.getCharacter(characterName));
 	}
 	
 	public boolean itemExist(String itemName, String containerName) {
@@ -295,6 +294,39 @@ public class Game{
 			targetChar.setHp(targetChar.getHp() + ((Food)item).getFoodPoints());
 			currentLocation.takeItem(itemName);
 		}
+	}
+	
+	public void attack(String source, String target) {
+		
+		AttackableCharacter sourceChar;
+		if(source.equals("hero")) {
+			sourceChar = this.hero;
+		}else {
+			if (currentLocation.getCharacter(source) instanceof AttackableCharacter) {
+				sourceChar = (AttackableCharacter)currentLocation.getCharacter(source);
+			}else {
+				return;
+			}
+		}
+		
+		AttackableCharacter targetChar;
+		if(target.equals("hero")) {
+			targetChar = this.hero;
+		}else {
+			if (currentLocation.getCharacter(target) instanceof AttackableCharacter) {
+				targetChar = (AttackableCharacter)currentLocation.getCharacter(target);
+			}else {
+				return;
+			}
+		}
+		
+		sourceChar.getWeapon().use(sourceChar, targetChar);
+		
+		if (targetChar.isDead()) {
+			this.currentLocation.getCharacters().remove(target);
+		}
+		
+		
 	}
 	
 	/**
