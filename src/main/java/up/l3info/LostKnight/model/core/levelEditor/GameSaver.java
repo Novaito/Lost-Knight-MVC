@@ -1,6 +1,8 @@
 package up.l3info.LostKnight.model.core.levelEditor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import up.l3info.LostKnight.model.core.character.Enemy;
+import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.model.core.game.Game;
 import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.map.Exit;
@@ -58,7 +60,7 @@ public class GameSaver {
     }
 
     /*---------------------------GETTERS-----------------------------------------*/
-    //getter
+
     public File getSrcLoc(){ return this.srcLoc; }
 
     public HashMap<String, ? extends GameObject> getLocObject(String loc) {
@@ -89,11 +91,21 @@ public class GameSaver {
         this.exitMap.putIfAbsent(e.getName(), e);
     }
 
+
+
     private void addAllExitAux(Location loc){
+        /*
         loc.getExits().forEach((str , e) -> {
             addExit(e);
             addAllExitAux(e.getLocation());
         });
+        */
+
+
+        loc.getExits().forEach((str , e) ->
+                addExit(e));
+
+
     }
 
     public void addAllExit(){
@@ -105,12 +117,17 @@ public class GameSaver {
 
 
 
+
+
+
     private void addAllLocAux(Location loc){
-            addLoc(loc.getName() , (HashMap<String, Item>) loc.getItems());
-            loc.getExits().forEach((str , e) -> {
-                if(!this.gameMap.containsKey(e.getLocation()))
+        addLoc(loc.getName() , (HashMap<String, Item>) loc.getItems());
+        addLoc(loc.getName() , (HashMap<String, ? extends GameCharacter>) loc.getCharacters());
+
+        loc.getExits().forEach((str , e) -> {
+            if(!getLocObject(e.getLocation().getName()).containsValue(e))
                 addAllLocAux(e.getLocation());
-            });
+        });
 
     }
 
