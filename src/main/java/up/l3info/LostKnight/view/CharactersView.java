@@ -1,6 +1,7 @@
 package up.l3info.LostKnight.view;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
@@ -25,7 +26,7 @@ public class CharactersView extends VBox implements View {
 	
 	private CharactersView() {
 		super();
-		setSpacing(3);
+		setSpacing(7);
 	}
 	
 	public static CharactersView create(String imgSrc, int posX, int posY, double lifePercentage) {
@@ -45,10 +46,11 @@ public class CharactersView extends VBox implements View {
 		
 		// HP Bar
 		hpProgressBar = new ProgressBar();
-		hpProgressBar.setMinHeight(15);
+		hpProgressBar.setMaxHeight(10);;
+		hpProgressBar.setMaxWidth(64);
 		setProgress(lifePercentage);
 		
-		getChildren().addAll(sprite, hpProgressBar);
+		getChildren().addAll(hpProgressBar, sprite);
 		setLayoutX(posX);
 		setLayoutY(posY);
 		
@@ -71,6 +73,10 @@ public class CharactersView extends VBox implements View {
 		return hpProgressBar.progressProperty();
 	}
 	
+	public StringProperty progressStyleProperty() {
+		return hpProgressBar.styleProperty();
+	}
+	
 	public void setX(int posX) {
 		setLayoutX(posX);
 	}
@@ -80,6 +86,6 @@ public class CharactersView extends VBox implements View {
 	}
 	
 	public void setHp(double lifePercentage) {
-		hpProgressBar.setProgress(lifePercentage);
+		setProgress(lifePercentage);
 	}
 }

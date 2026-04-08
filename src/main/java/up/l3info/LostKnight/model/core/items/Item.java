@@ -8,7 +8,7 @@ import up.l3info.LostKnight.mvc.Model;
  * 
  * @author Noé
  */
-public abstract class Item extends GameObject implements LookableObject, Model {
+public abstract class Item extends GameObject implements LookableObject {
 
 	private String name;
 	private String description;

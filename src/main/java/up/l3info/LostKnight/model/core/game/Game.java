@@ -1,11 +1,13 @@
 package up.l3info.LostKnight.model.core.game;
 
+import java.awt.TextArea;
 import java.util.*;
 
 import up.l3info.LostKnight.model.core.character.*;
 import up.l3info.LostKnight.model.core.items.Chest;
 import up.l3info.LostKnight.model.core.items.Consumnable;
 import up.l3info.LostKnight.model.core.items.Container;
+import up.l3info.LostKnight.model.core.items.Food;
 import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.items.Key;
 import up.l3info.LostKnight.model.core.items.Weapon;
@@ -26,6 +28,9 @@ public class Game{
 	 * This isn't the right way to do this but it is the only solution I have for now.
 	 */
 	private static Scanner SCANNER = new Scanner(System.in);
+	
+	private static final int TILE_SIZE = 50; //TODO arbitraire, à modifier
+	private static final int DISTANCE_TO_INTERACT = 200;
 	
 	private Hero hero;
 	private Commands commands;
@@ -109,7 +114,7 @@ public class Game{
 		if(hero.isDead()) {
 			StringBuilder delimiter = new StringBuilder();
 			String s = "You died";
-			delimiter.repeat("═", s.length()+2);
+			//delimiter.repeat("═", s.length()+2);
 			System.out.println("\033[91m╔" + delimiter + "╗\033[0m");
 			System.out.println("  \033[41;1mYou died\033[0;2m");
 			System.out.println("\033[91m╚" + delimiter + "╝\033[0m");
@@ -147,8 +152,7 @@ public class Game{
 	}
 	
 	public boolean isCharacterReachable(String characterName) {
-		//TODO
-		return false;
+		return isReachableObject(hero, currentLocation.getCharacter(characterName));
 	}
 	
 	public boolean itemExist(String itemName, String containerName) {
@@ -167,11 +171,22 @@ public class Game{
 	
 	public boolean isReachableObject(GameObject g1, GameObject g2) {
 		return Math.sqrt((g2.getPosX() - g1.getPosX()) * (g2.getPosX() - g1.getPosX())
-				+ (g2.getPosY() - g1.getPosY()) * (g2.getPosY() - g1.getPosY())) < 20;
+				+ (g2.getPosY() - g1.getPosY()) * (g2.getPosY() - g1.getPosY())) < DISTANCE_TO_INTERACT;
 	}
 	
 	public Hero getHero() {
-		return this.getHero();
+		return this.hero;
+	}
+	
+	public boolean canHeroMove(int posX, int posY) {
+		return posX >= 0 && posY >= 0 
+				&& posX <= currentLocation.getSizeX() * TILE_SIZE 
+				&& posY <= currentLocation.getSizeY() * TILE_SIZE;
+	}
+	
+	public void heroMove(int posX, int posY) {
+		this.hero.setPosX(posX);
+		this.hero.setPosY(posY);
 	}
 	
 
@@ -259,12 +274,67 @@ public class Game{
 		this.stopGame = true;
 	}
 
+	public void use(String itemName, String target) {
+		Item item = currentLocation.getItem(itemName);
+		AttackableCharacter targetChar;
+		if (target.equalsIgnoreCase("hero") || target.equals("")) {
+			targetChar = getHero();
+		}else {
+			GameCharacter tempChar = currentLocation.getCharacter(target);
+			if(tempChar == null) {
+				throw new NullPointerException();
+			}else if(tempChar instanceof AttackableCharacter) {
+				targetChar = (AttackableCharacter) tempChar;
+			}else {
+				throw new Error("Peut pas utiliser ca sur ce character");
+			}
+		}
+		
+		if (item instanceof Food) {
+			targetChar.setHp(targetChar.getHp() + ((Food)item).getFoodPoints());
+			currentLocation.takeItem(itemName);
+		}
+	}
+	
+	public void attack(String source, String target) {
+		
+		AttackableCharacter sourceChar;
+		if(source.equals("hero")) {
+			sourceChar = this.hero;
+		}else {
+			if (currentLocation.getCharacter(source) instanceof AttackableCharacter) {
+				sourceChar = (AttackableCharacter)currentLocation.getCharacter(source);
+			}else {
+				return;
+			}
+		}
+		
+		AttackableCharacter targetChar;
+		if(target.equals("hero")) {
+			targetChar = this.hero;
+		}else {
+			if (currentLocation.getCharacter(target) instanceof AttackableCharacter) {
+				targetChar = (AttackableCharacter)currentLocation.getCharacter(target);
+			}else {
+				return;
+			}
+		}
+		
+		sourceChar.getWeapon().use(sourceChar, targetChar);
+		
+		if (targetChar.isDead()) {
+			this.currentLocation.getCharacters().remove(target);
+		}
+		
+		
+	}
+	
 	/**
 	 * Tries to use an item from the hero's inventory on a target
 	 * 
 	 * @param itemName The name of the Item
 	 * @param target The target to use the item on
-	 */
+	 *
 	public void use(String itemName, String target) {
 		// TODO - implement Game.use
 		AttackableCharacter tar;
@@ -317,13 +387,13 @@ public class Game{
 			((Consumnable) item).use(hero, tar);
 		}
 		
-	}
+	}*/
 
 
 	/**
 	 * Tries to look an object if it implements the interface LookableObject
 	 * 
-	 * @param s The name of the object
+	 * @param s The name of the objectenvironmentViews
 	 */
 	public void look(String s) {
 		LookableObject lo;

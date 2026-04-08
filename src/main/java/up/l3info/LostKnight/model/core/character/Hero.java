@@ -29,7 +29,7 @@ public class Hero extends AttackableCharacter{
 		super(name, hp, dialog,posX,posY);
 		stamina = MAX_STAMINA;
 		hunger = MAX_HUNGER / 2;
-		bag = new Bag("Hero's Bag", DEFAULT_MAX_INVENTORY_ITEMS);
+		bag = new Bag("Hero's Bag", DEFAULT_MAX_INVENTORY_ITEMS, 0, 0);
 	}
 
 	/**

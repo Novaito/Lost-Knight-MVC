@@ -22,7 +22,7 @@ public class Dragon extends Enemy {
 	 * @param dialog Dragon's dialog
 	 */
 	public Dragon(String name, int hp, ArrayList<Item> items, String dialog,int posX,int posY) {
-		super(name, hp, items, dialog, new Weapon("Claws", 31) , posX, posY);
+		super(name, hp, items, dialog, new Weapon("Claws", 31, 0, 0) , posX, posY);
 	}
 
 	/**

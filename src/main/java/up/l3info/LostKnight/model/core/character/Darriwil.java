@@ -22,7 +22,7 @@ public class Darriwil extends Enemy {
 	 * @param dialog Darriwil's dialog
 	 */
 	public Darriwil(String name, int hp, ArrayList<Item> items, String dialog,int posX,int posY) {
-		super(name, hp, items, dialog, new Weapon("Sword67", 10),posX, posY);
+		super(name, hp, items, dialog, new Weapon("Sword67", 10, 0, 0),posX, posY);
 	}
 
 	/**

@@ -10,14 +10,14 @@ public class WeaponModel implements Model {
 	@Override
 	public void run() {}
 	
-	private WeaponModel(Weapon weapon) {
+	public WeaponModel(Weapon weapon) {
 		weaponItem = weapon;
 	}
 	
-	public static WeaponModel create(Weapon weapon) {
+	/*public static WeaponModel create(Weapon weapon) {
 		WeaponModel weaponModel = new WeaponModel(weapon);
 		return weaponModel;
-	}
+	}*/
 	
 	public String nameWeapon() {
 		return weaponItem.getName();
@@ -25,6 +25,10 @@ public class WeaponModel implements Model {
 	
 	public int damagesValue() {
 		return weaponItem.getDamages();
+	}
+	
+	public Weapon getWeapon() {
+		return weaponItem;
 	}
 	
 

@@ -1,6 +1,7 @@
 package up.l3info.LostKnight.view;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -121,5 +122,9 @@ public class HeroStateBar extends HBox implements View {
 		hpProgressBar.setStyle(
 				"-fx-control-inner-background: #222;"
 				+ colorCSS);
+	}
+	
+	public StringProperty progressStyleProperty() {
+		return hpProgressBar.styleProperty();
 	}
 }

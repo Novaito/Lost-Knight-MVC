@@ -24,7 +24,7 @@ public class HeroModel implements Model {
 	}
 
 	public double hpPercentage() {
-		return hero.getHp() * 100 / hero.getMaxHp();
+		return (double)hero.getHp() / hero.getMaxHp();
 	}
 
 	public int hpValue() {

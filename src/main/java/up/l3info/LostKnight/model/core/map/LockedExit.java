@@ -18,8 +18,8 @@ public class LockedExit extends Exit {
 	 * @param location The location it leads to
 	 * @param desc The description of the exit
 	 */
-	public LockedExit(String name, Location location, String desc) {
-		super(name, location, desc);
+	public LockedExit(String name, Location location, String desc, int posX, int posY) {
+		super(name, location, desc, posX, posY);
 		locked = true;
 	}
 	
@@ -29,8 +29,8 @@ public class LockedExit extends Exit {
 	 * @param name The name of the door
 	 * @param location The location it leads to
 	 */
-	public LockedExit(String name, Location location) {
-		this(name, location, String.format(DEFAULT_DESC, name));
+	public LockedExit(String name, Location location, int posX, int posY) {
+		this(name, location, String.format(DEFAULT_DESC, name), posX, posY);
 	}
 	
 	/**

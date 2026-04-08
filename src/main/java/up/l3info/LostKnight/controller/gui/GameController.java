@@ -3,45 +3,137 @@ package up.l3info.LostKnight.controller.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.Node;
+import up.l3info.LostKnight.model.GameModel;
+import up.l3info.LostKnight.model.HeroModel;
+import up.l3info.LostKnight.model.LocationModel;
 import up.l3info.LostKnight.model.core.character.Hero;
 import up.l3info.LostKnight.model.core.game.Game;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.mvc.Model;
 import up.l3info.LostKnight.mvc.View;
+import up.l3info.LostKnight.view.CharactersView;
 import up.l3info.LostKnight.view.GameView;
+import up.l3info.LostKnight.view.ItemView;
+import up.l3info.LostKnight.view.LocationView;
 
-public class GameController extends Controller<Game, GameView>{
+public class GameController extends Controller<GameModel, GameView>{
 
-	public GameController(Game p_model, GameView p_view) {
+	private final SimpleBooleanProperty heroLifeChanged;
+	private final SimpleBooleanProperty heroPosChanged;
+	
+	public GameController(GameModel p_model, GameView p_view, SimpleBooleanProperty heroLifeChanged, SimpleBooleanProperty heroPosChanged,
+			List<Controller<? extends Model, ? extends View>> subControllers) {
 		super(p_model, p_view);
+		
+		this.heroLifeChanged = heroLifeChanged;
+		this.heroPosChanged = heroPosChanged;
+		this.subControllers = subControllers;
 	}
-
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
 		
+		initInteractions();
+		
+		getLocationController().getView().setOnMouseClicked(event ->{
+			heroMove(((int)event.getX()) - 64, (int)event.getY() - 64);
+		});
+		
+		
 	}
 	
-	public static GameController create(Game game) {
-		List<Controller<? extends Model, ? extends View>> subControllers = GameController.createSubcontrollers();
+	private void initInteractions() {
+		initItemInteraction();
+		initEnemyInteraction();
+	}
+	
+	private void initItemInteraction() {
+		for (Controller controller : getLocationController().getSubControllers()) {
+			if (controller instanceof FoodController) {
+				((FoodController) controller).getView().setOnMouseClicked(event -> {
+					useItem(((FoodController) controller).getModel().foodName());
+					//getLocationController().getView().updateView(((FoodController) controller).getView());
+					event.consume();
+				});
+			}
+		}
+	}
+	
+	private void initEnemyInteraction() {
+		for (Controller controller : getLocationController().getSubControllers()) {
+			if (controller instanceof EnemyController) {
+				((EnemyController) controller).getView().setOnMouseClicked(event -> {
+					attackCharacter(((EnemyController)controller).getModel().getName());
+					//getLocationController().getView().updateView(((FoodController) controller).getView());
+					event.consume();
+				});
+			}
+		}
+	}
+	
+	public static GameController create(GameModel game) {
+		SimpleBooleanProperty heroLifeChanged = new SimpleBooleanProperty(false);
+		SimpleBooleanProperty heroPosChanged = new SimpleBooleanProperty(false);
+		
+		List<Controller<? extends Model, ? extends View>> subControllers = 
+				GameController.createSubcontrollers(game, heroLifeChanged, heroPosChanged);
+		
 		List<View> subViews = extractSubViews(subControllers);
 		
-		GameController gameController = new GameController(game, GameView.create(subViews));
+		GameController gameController = 
+				new GameController(game, GameView.create(new ArrayList<Node>() , (LocationView)subViews.get(1), (CharactersView)subViews.get(0)), heroLifeChanged, heroPosChanged, subControllers);
 		
-		
+		gameController.init();
 		return gameController;
 	}
 	
-	public static List<Controller<?extends Model, ? extends View>> createSubcontrollers(){
+	public static List<Controller<?extends Model, ? extends View>> createSubcontrollers(
+			GameModel gameModel,
+			SimpleBooleanProperty heroLifeChanged,
+			SimpleBooleanProperty heroPosChanged){
 		List<Controller<? extends Model, ? extends View>> subControllers = new ArrayList<Controller<? extends Model,? extends View>>();
-		subControllers.add(HeroController.create(((HeroController) subControllers.get(0)).getModel()));
+		subControllers.add(HeroController.create(new HeroModel(gameModel.getHero()), heroLifeChanged, heroPosChanged)); //TODO il devrait y avoir deux property, life et pos
+		subControllers.add(LocationController.create(new LocationModel(gameModel.getCurrentLocation())));
 		return subControllers;
 	}
 	
 	
 	
+	
 	private HeroController getHeroController() {
 		return (HeroController) subControllers.get(0);
+	}
+	
+	private LocationController getLocationController() {
+		return (LocationController) subControllers.get(1);
+	}
+	
+	private void heroMove(int posX, int posY) {
+		if(this.model.canHeroMove(posX, posY)) {
+			this.model.heroMove(posX, posY);
+			this.heroPosChanged.set(true);
+		}
+	}
+	
+	private void useItem(String itemName) {
+		if(this.model.canUseItem(itemName)) {
+			this.model.useItem(itemName);
+			getLocationController().updateSubControllers();
+			initInteractions();
+			this.heroLifeChanged.set(true);
+		}
+	}
+	
+	
+	private void attackCharacter(String characterName) {
+		if(this.model.characterExists(characterName) && this.model.isCharacterReachable(characterName)) {
+			this.model.heroAttack(characterName);
+			getLocationController().updateSubControllers();
+			initInteractions();
+		}
 	}
 
 	

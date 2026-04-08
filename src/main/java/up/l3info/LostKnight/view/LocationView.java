@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 import up.l3info.LostKnight.mvc.View;
 
 public class LocationView extends Pane implements View {
-
+	
 	@Override
 	public void hide() {
 		setVisible(false);
@@ -30,9 +30,11 @@ public class LocationView extends Pane implements View {
 		locationView.init(imgSrc, environmentViews);
 		return locationView;
 	}
+	
+	//TODO il faut une fonction qui update les subviews, dans le cas ou on rammasse un item par exemple
 
 	private void init(String imgSrc, List<View> environmentViews) {
-		Rectangle playingFrame = new Rectangle(700, 700);
+		Rectangle playingFrame = new Rectangle(500, 500);
 		ImagePattern pattern = new ImagePattern(new Image(imgSrc));
 		playingFrame.setFill(pattern);
 		getChildren().add(playingFrame);
@@ -41,6 +43,14 @@ public class LocationView extends Pane implements View {
 			for (View elementView : environmentViews) {
 				getChildren().add((Node) elementView);
 			}			
+		}
+	}
+	
+	public void updateViews(List<View> environmentViews) {
+		getChildren().removeIf(node -> node instanceof ItemView || node instanceof CharactersView);
+		
+		for (View view : environmentViews) {
+			getChildren().add((Node) view);
 		}
 	}
 }

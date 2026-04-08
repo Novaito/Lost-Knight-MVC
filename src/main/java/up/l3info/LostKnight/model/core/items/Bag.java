@@ -27,7 +27,7 @@ public class Bag extends Container {
 	public void look() {
 		StringBuilder delimiter = new StringBuilder();
 		String firstStr = "  This is " + this.getName() + ",\033[91;1m it can carry up to " + getMaxItemNumber() + "\033[0;2m";
-		delimiter.repeat("═", firstStr.length());
+		//delimiter.repeat("═", firstStr.length());
 		System.out.println("╔" + delimiter + "╗");
 		System.out.println(firstStr);
 		System.out.println("╚" + delimiter + "╝");
