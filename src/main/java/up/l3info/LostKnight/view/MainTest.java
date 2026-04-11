@@ -28,10 +28,10 @@ public class MainTest extends Application {
 		String urlLocation = getClass().getResource("/img/locationTest.png").toExternalForm();
 		LocationView locationView = LocationView.create(urlLocation, null);
 		
-		GameView gameView = GameView.create(sideBarGame, locationView);
+		//GameView gameView = GameView.create(sideBarGame, locationView);
 		
-		
-		Scene sc = new Scene(gameView, 1000, 800);
+		//LocationView, anciennement gameView
+		Scene sc = new Scene(locationView, 1000, 800);
 		primaryStage.setScene(sc);
 		primaryStage.show();
 	}

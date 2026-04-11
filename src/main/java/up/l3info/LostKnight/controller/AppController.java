@@ -36,8 +36,17 @@ public abstract class AppController extends Controller<Model, View>{
 		List<View> subViews = AppController.extractViewFromControllers(subControllers);
 		
 		AppTextualView appView = AppTextualView.create(subViews);
-		
-		AppController appController = new AppController(primaryStage, appView);
+
+		//il a fallu la déclarer comme une classe anonyme pour compiler avec mvn javafx:run
+		//qui réimplente les méthodes, avec rien
+		AppController appController = new AppController(primaryStage, appView){
+			@Override public void executeGoCommand() {}
+			@Override public void executeHelpCommand() {}
+			@Override public void executeUseCommand() {}
+			@Override public void executeTakeCommand() {}
+			@Override public void executeAttackCommand() {}
+			@Override public void executeMoveCommand() {}
+		};
 		return appController;
 	}
 	
