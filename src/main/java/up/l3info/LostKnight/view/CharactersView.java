@@ -37,6 +37,7 @@ public class CharactersView extends VBox implements View {
 	
 	private void init(String imgSrc, int posX, int posY, double lifePercentage) {
 		// Image of Sprite 
+		System.out.println(imgSrc);
 		String url = getClass().getResource(imgSrc).toExternalForm();
 		Rectangle characterFrame = new Rectangle(64, 64);
 		ImagePattern pattern = new ImagePattern(new Image(url));
