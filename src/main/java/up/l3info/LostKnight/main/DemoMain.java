@@ -56,8 +56,8 @@ public class DemoMain extends Application{
 		saver.save();
 
 		//plus utile ?
-		Controller<GameModel, GameView> mainController = GameController.create(new GameModel(game));
-		Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(null, 15*15, false));
+		//Controller<GameModel, GameView> mainController = GameController.create(new GameModel(game));
+		//Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(null, 15*15, false));
 		
 		Scene scene = new Scene(menu.getView()); // 400, 600
 		

@@ -16,6 +16,7 @@ public class LevelEditorModel implements Model {
 
 	private String[] backLayerSrc;
 	private String[] upLayerSrc;
+	private int size;
 	private boolean isExistedBefore;
 	
 	
@@ -25,21 +26,27 @@ public class LevelEditorModel implements Model {
 	public void run() {}
 	
 	public LevelEditorModel(String locName, int size, boolean isExist) {
+		this.size = size;
 		// IMPORTANT : Quand le loader sera implémenté 
-		//tilesSrc = isExist ? GameLoader.getTilesFromLocation(locName) : new ArrayList<String>();
-		tilesSrc = new String[size*size];
+		//backLayerSrc = isExist ? GameLoader.getTilesFromLocation(locName) : new ArrayList<String>();
+		backLayerSrc = new String[size*size];
+		upLayerSrc = new String[size*size];
 		
 		isExistedBefore = isExist;
 	}
 	
 	public void updateTileSrc(String tileSrc, int index) {
-		System.out.print(tilesSrc[index] + " -> ");
-		tilesSrc[index] =  tileSrc;
-		System.out.println(tilesSrc[index]);
+		System.out.print(backLayerSrc[index] + " -> ");
+		backLayerSrc[index] =  tileSrc;
+		System.out.println(backLayerSrc[index]);
+	}
+	
+	public void addSpriteSrc(String tileSrc, int index) {
+		upLayerSrc[index] = tileSrc;
 	}
 	
 	public String[] getTiles() {
-		return tilesSrc;
+		return backLayerSrc;
 	}
 	
 	public Map<String, List<String>> extractAssets(String path) {
