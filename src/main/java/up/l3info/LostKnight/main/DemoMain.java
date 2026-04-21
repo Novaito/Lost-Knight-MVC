@@ -3,20 +3,21 @@ package up.l3info.LostKnight.main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import up.l3info.LostKnight.controller.MenuController;
 import up.l3info.LostKnight.controller.gui.GameController;
-import up.l3info.LostKnight.controller.gui.LevelEditorController;
 import up.l3info.LostKnight.model.GameModel;
-import up.l3info.LostKnight.model.LevelEditorModel;
 import up.l3info.LostKnight.model.core.character.AttackableCharacter;
 import up.l3info.LostKnight.model.core.character.Hero;
 import up.l3info.LostKnight.model.core.character.Orc;
 import up.l3info.LostKnight.model.core.game.Game;
 import up.l3info.LostKnight.model.core.items.Food;
 import up.l3info.LostKnight.model.core.items.Weapon;
+import up.l3info.LostKnight.model.core.levelEditor.GameSaver;
 import up.l3info.LostKnight.model.core.map.Location;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.GameView;
-import up.l3info.LostKnight.view.LevelEditorView;
+
+import java.io.File;
 
 public class DemoMain extends Application{
 	
@@ -27,8 +28,6 @@ public class DemoMain extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		/**
-		 * 
 		
 		Location spawn = new Location("Meadow", "A cool meadow", 15, 15); //TODO: à corriger nb de tile w x h
 		Hero hero = new Hero("Hero", 100, "hello im hero", 100, 100);
@@ -49,17 +48,24 @@ public class DemoMain extends Application{
 		spawn.addCharacters(orc);
 		
 		Game game = new Game(hero, spawn);
-		
+		GameModel gameModel = new GameModel(game);
+		MenuController menu = MenuController.create(primaryStage, gameModel);
+
+
+		GameSaver saver = new GameSaver(new File("testSave.json") , game);
+		saver.save();
+
+		//plus utile ?
 		Controller<GameModel, GameView> mainController = GameController.create(new GameModel(game));
-		 */
-		
 		Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(null, 15*15, false));
 		
-		Scene scene = new Scene(lvlController.getView()); // 400, 600
+		Scene scene = new Scene(menu.getView()); // 400, 600
 		
 		primaryStage.setTitle("Game");
 		primaryStage.setScene(scene);
 		primaryStage.show();	
 	}
+	
+	
 
 }
