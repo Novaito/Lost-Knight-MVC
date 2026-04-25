@@ -1,44 +1,76 @@
 package up.l3info.LostKnight.controller;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import up.l3info.LostKnight.controller.gui.GameController;
+import up.l3info.LostKnight.controller.gui.LevelEditorController;
 import up.l3info.LostKnight.model.GameModel;
+import up.l3info.LostKnight.model.LevelEditorModel;
 import up.l3info.LostKnight.model.MenuModel;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.GameView;
+import up.l3info.LostKnight.view.LevelEditorView;
 import up.l3info.LostKnight.view.MenuView;
 
 public class MenuController extends Controller<MenuModel, MenuView> {
 
     private final Stage stage;
     private final GameModel gameModel;
+    private final SimpleBooleanProperty backToMenu;
+    private Scene menuScene;
 
     private MenuController(Stage p_stage, GameModel p_gameModel) {
         super(new MenuModel(), MenuView.create());
         this.stage     = p_stage;
         this.gameModel = p_gameModel;
+        this.backToMenu = new SimpleBooleanProperty(false);
     }
 
     public static MenuController create(Stage p_stage, GameModel p_gameModel) {
         MenuController ctrl = new MenuController(p_stage, p_gameModel);
         ctrl.init();
+        ctrl.initLaunch();
         return ctrl;
     }
 
     //GROS DOUTE, POSSIBLEMENT LE METTRE DANS MODEL
     @Override
     public void init() {
-        super.view.getGraphique().setOnAction(e -> launchGraphique());
-        super.view.getTextuelle().setOnAction(e -> launchTextuelle());
-        super.view.getQuitter().setOnAction(e -> Platform.exit());
+    	getView().getGraphique().setOnAction(e -> launchGraphique());
+        getView().getTextuelle().setOnAction(e -> launchTextuelle());
+        getView().getLevelEditor().setOnAction(e -> launchEditor());
+        getView().getQuitter().setOnAction(e -> Platform.exit());
+        
+        backToMenu.addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                Platform.runLater(() -> {
+                    initLaunch();
+                    backToMenu.set(false);
+                });
+            }
+        });
+    }
+    
+    private void initLaunch() {
+    	if (menuScene == null) {
+    		menuScene = new Scene(getView());
+    	}
+    	stage.setScene(menuScene);
+    	stage.setTitle("Home Menu");
     }
 
     private void launchGraphique() {
         Controller<GameModel, GameView> gameController = GameController.create(this.gameModel);
         this.stage.setScene(new Scene(gameController.getView()));
-        this.stage.setTitle("Lost Knight");
+        this.stage.setTitle("Game");
+    }
+    
+    private void launchEditor() {
+    	Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(null, 15*15, false), backToMenu);
+    	stage.setScene(new Scene(lvlController.getView()));
+    	stage.setTitle("Level Editor");
     }
 
     //pas encore fait

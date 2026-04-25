@@ -14,6 +14,7 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 
 	private final SimpleStringProperty holdingTexture;
 	private final SimpleIntegerProperty tileIndexUpdate;
+	private final SimpleBooleanProperty backToMenu;
 	
 	@Override
 	public void init() {}
@@ -21,17 +22,19 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 	private LevelEditorController(LevelEditorModel lvlEditModel, 
 									LevelEditorView lvlEditView,
 									SimpleStringProperty holdingTexture,
-									SimpleIntegerProperty tileIndexUpdate) {
+									SimpleIntegerProperty tileIndexUpdate,
+									SimpleBooleanProperty backToMenu) {
 		
 		super(lvlEditModel, lvlEditView);
 		this.holdingTexture = holdingTexture;
 		this.tileIndexUpdate = tileIndexUpdate;
+		this.backToMenu = backToMenu;
 		
 		buildListener();
 	}
 	
 	// TODO : SimpleBooleanProperty backMainMenu param
-	public static LevelEditorController create(LevelEditorModel lvlEditModel) {
+	public static LevelEditorController create(LevelEditorModel lvlEditModel, SimpleBooleanProperty backToMenu) {
 		SimpleStringProperty holdingTexture = new SimpleStringProperty("");
 		SimpleIntegerProperty tileIndexUpdate = new SimpleIntegerProperty();
 		
@@ -40,18 +43,21 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 		// Extract datas
 		Map<String, List<String>> assetsMap = lvlEditModel.extractAssets("/img/");
 		
-		LevelEditorController lvlEditController = new LevelEditorController(lvlEditModel, LevelEditorView.create(assetsMap, 15, 15, holdingTexture, tileIndexUpdate), holdingTexture, tileIndexUpdate);
+		LevelEditorController lvlEditController = new LevelEditorController(lvlEditModel, LevelEditorView.create(assetsMap, 15, 15, holdingTexture, tileIndexUpdate), holdingTexture, tileIndexUpdate, backToMenu);
 		
 		return lvlEditController;
 	}
 	
 	private void buildListener() {
-		tileIndexUpdate.addListener((observable, newValue, oldValue) -> {
-			System.out.println("Update");
+		tileIndexUpdate.addListener((observable, oldValue, newValue) -> {
 			if (newValue != null) {
 				((LevelEditorModel) getModel()).updateTileSrc(holdingTexture.getValue(), (int)newValue);
 			}
 			newValue = -1;
+		});
+		
+		getView().getCancel().setOnAction(e -> {
+			backToMenu.set(true);
 		});
 	}
 }

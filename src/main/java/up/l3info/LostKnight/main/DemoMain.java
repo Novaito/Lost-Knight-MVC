@@ -55,14 +55,6 @@ public class DemoMain extends Application{
 		GameSaver saver = new GameSaver(new File("testSave.json") , game);
 		saver.save();
 
-		//plus utile ?
-		//Controller<GameModel, GameView> mainController = GameController.create(new GameModel(game));
-		//Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(null, 15*15, false));
-		
-		Scene scene = new Scene(menu.getView()); // 400, 600
-		
-		primaryStage.setTitle("Game");
-		primaryStage.setScene(scene);
 		primaryStage.show();	
 	}
 	

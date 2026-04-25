@@ -19,9 +19,6 @@ public class LevelEditorModel implements Model {
 	private int size;
 	private boolean isExistedBefore;
 	
-	
-	// TODO : Faire une diff entre item/sprite et le reste
-	
 	@Override
 	public void run() {}
 	
@@ -36,9 +33,10 @@ public class LevelEditorModel implements Model {
 	}
 	
 	public void updateTileSrc(String tileSrc, int index) {
-		System.out.print(backLayerSrc[index] + " -> ");
+		String prev = index + backLayerSrc[index]; 
 		backLayerSrc[index] =  tileSrc;
-		System.out.println(backLayerSrc[index]);
+		System.out.println("index : " + index);
+		System.out.println(prev + " -> " + backLayerSrc[index]);
 	}
 	
 	public void addSpriteSrc(String tileSrc, int index) {
@@ -61,7 +59,6 @@ public class LevelEditorModel implements Model {
 		}
 		
 		File imgDir = new File(url);
-		//System.out.println(imgDir.getAbsolutePath() + " " + imgDir.isDirectory());
 		
 		for (final File f: imgDir.listFiles()) {
 			if (f.isDirectory()) {

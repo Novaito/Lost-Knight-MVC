@@ -5,13 +5,14 @@ import java.util.Map;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import up.l3info.LostKnight.mvc.View;
 
 public class LevelEditorView extends BorderPane implements View {
 
 	private LocationBoardOverview locOverview;
-	private TileSelectorView tileSelector;
+	private EditorSidePanelView sidePanel;
 	
 	@Override
 	public void hide() {
@@ -41,7 +42,7 @@ public class LevelEditorView extends BorderPane implements View {
 	
 	private void setup() {
 		setCenter(locOverview);
-		setRight(tileSelector);
+		setRight(sidePanel);
 	}
 	
 	
@@ -64,8 +65,8 @@ public class LevelEditorView extends BorderPane implements View {
 						SimpleStringProperty holdingTexture,
 						SimpleIntegerProperty tileIndexUpdate) {
 		
-		tileSelector = TileSelectorView.create(assetsMap, holdingTexture);
-		locOverview = LocationBoardOverview.create(listTiles, sizeX, sizeY, holdingTexture, tileIndexUpdate, tileSelector.typeOfTileProperty());
+		sidePanel = EditorSidePanelView.create(assetsMap, holdingTexture);
+		locOverview = LocationBoardOverview.create(listTiles, sizeX, sizeY, holdingTexture, tileIndexUpdate, sidePanel.typeOfTileProperty());
 	}
 	
 	private void init(Map<String,List<String>> assetsMap,
@@ -74,11 +75,19 @@ public class LevelEditorView extends BorderPane implements View {
 						SimpleStringProperty holdingTexture,
 						SimpleIntegerProperty tileIndexUpdate) {
 		
-		tileSelector = TileSelectorView.create(assetsMap, holdingTexture);
-		locOverview = LocationBoardOverview.create(sizeX, sizeY, holdingTexture, tileIndexUpdate, tileSelector.typeOfTileProperty());
+		sidePanel = EditorSidePanelView.create(assetsMap, holdingTexture);
+		locOverview = LocationBoardOverview.create(sizeX, sizeY, holdingTexture, tileIndexUpdate, sidePanel.typeOfTileProperty());
 	}
 	
 	public String getSelectedTab() {
-		return tileSelector.selectedTab();
+		return sidePanel.getSelectedTab();
+	}
+
+	public Button getCancel() {
+		return sidePanel.getCancel();
+	}
+	
+	public Button getSave() {
+		return sidePanel.getSave();
 	}
 }

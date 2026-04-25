@@ -3,7 +3,6 @@ package up.l3info.LostKnight.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.GridPane;
@@ -96,20 +95,19 @@ public class LocationBoardOverview extends GridPane implements View {
 	private void style() {
 		setHgap(1);
 		setVgap(1);
-		setStyle("-fx-background-color:#2f2f2f;");
+		setStyle("-fx-background-color:" + DEFAULT_BACKGROUND_COLOR + ";");
 	}
 	
 	private void setEvent(TilesView tile) {
 		tile.setOnMouseClicked((e) -> {
-			if (heldTexture.getValue() != "") {
-				if (tile.getPrimaryTexture() != heldTexture.getValue()) {
-					if (!typeOfTileHeld.getValue().equals("sprite")) {
-						tile.setTile(heldTexture.getValue());							
-					} else {
-						tile.setSndTile(heldTexture.getValue());
-					}
-					tileIndexUpdate.set(tile.INDEX);
+			if (heldTexture.getValue() != "" && tile.getPrimaryTexture() != heldTexture.getValue()) {
+				if (!typeOfTileHeld.getValue().equals("sprite")) {
+					tile.setTile(heldTexture.getValue());							
+				} else {
+					tile.setSndTile(heldTexture.getValue());
 				}
+				System.out.println("Index of the tile : " + tile.INDEX);
+				tileIndexUpdate.set(tile.INDEX);
 			}
 		});
 	}
@@ -130,9 +128,9 @@ public class LocationBoardOverview extends GridPane implements View {
 		int i=0;
 		int j=0;
 		for (TilesView view : tilesList) {
-			add(view, i, j);
+			add(view, j, i);
 			if (!CREATE) setEvent(view);
-			if (j < nbColumns - 1) j++;
+			if (j < nbRows - 1) j++;
 			else {
 				j=0;
 				i++;

@@ -27,7 +27,7 @@ public class TileSelectorView extends TabPane implements View {
 	private TileSelectorView(Map<String, List<String>> srcFromFold, SimpleStringProperty holdingTexture) {
 		super();
 		
-		setStyle("-fx-background-color:#2f2f2f;");
+		setStyle("-fx-background-color:" + DEFAULT_BACKGROUND_COLOR + ";");
 		
 		setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		this.heldTexture = holdingTexture;

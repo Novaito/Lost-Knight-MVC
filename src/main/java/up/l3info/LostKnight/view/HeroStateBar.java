@@ -102,7 +102,7 @@ public class HeroStateBar extends HBox implements View {
 			setMargin(n, new Insets(0, 5, 10, 5));
 		}
 		getChildren().get(1).setStyle(
-					"-fx-background-color:#2f2f2f;"
+					"-fx-background-color:" + DEFAULT_BACKGROUND_COLOR + ";"
 					+ "-fx-background-radius:10px;"
 					+ "-fx-padding:5");
 	}

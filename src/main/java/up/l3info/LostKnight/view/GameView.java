@@ -38,7 +38,7 @@ public class GameView extends BorderPane implements View {
 	}
 	
 	private void init(List<Node> childsElement, LocationView locationView, CharactersView hero) {
-		String urlProfileHero = getClass().getResource("/img/profileHero.png").toExternalForm();
+		String urlProfileHero = getClass().getResource("/img/sprite/profileHero.png").toExternalForm();
 		HeroStateBar heroStateBar = HeroStateBar.create(urlProfileHero, hero.progressProperty().getValue());
 		heroStateBar.progressProperty().bind(hero.progressProperty());
 		heroStateBar.progressStyleProperty().bind(hero.progressStyleProperty());
