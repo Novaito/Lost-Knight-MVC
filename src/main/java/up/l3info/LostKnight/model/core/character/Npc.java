@@ -15,8 +15,8 @@ public class Npc extends GameCharacter implements AwardableItem {
 	 * @param dialog The npc's dialog
 	 * @param items The list items kept by the npc
 	 */
-	public Npc(String name, String dialog, ArrayList<Item> items,int posX, int posY) {
-		super(name, dialog,posX,posY);
+	public Npc(String name, String path, String dialog, ArrayList<Item> items,int posX, int posY) {
+		super(name, path, dialog,posX,posY);
 		updateItems(items);
 	}
 

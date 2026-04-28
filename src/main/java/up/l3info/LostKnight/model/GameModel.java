@@ -57,7 +57,13 @@ public class GameModel implements Model{
 		game.attack("hero", characterName);
 	}
 	
-	
+	/**
+	 * For LevelEditor usage only /!\/!\
+	 * @return the current game core
+	 */
+	public Game getGame() {
+		return game;
+	}
 	
 	
 

@@ -19,8 +19,8 @@ public class Food extends Consumnable {
 	 * @param foodPoints the amount of hunger this food regenerates
 	 * @param desc The custom description of this food
 	 */
-	public Food(String name, int foodPoints, String desc,int posX, int posY) {
-		super(name, desc, posX,posY);
+	public Food(String name, int foodPoints, String path, String desc,int posX, int posY) {
+		super(name, path, desc, posX,posY);
 		this.FOOD_POINTS = foodPoints;
 	}
 	
@@ -32,8 +32,8 @@ public class Food extends Consumnable {
 	 * @param posX X position
 	 * @param posY Y position
 	 */
-	public Food(String name, int foodPoints, int posX, int posY) {
-		this(name, foodPoints, String.format(DEFAULT_DESC, name), posX, posY);
+	public Food(String name, int foodPoints, String path, int posX, int posY) {
+		this(name, foodPoints, path,  String.format(DEFAULT_DESC, name), posX, posY);
 	}
 	
 	/**

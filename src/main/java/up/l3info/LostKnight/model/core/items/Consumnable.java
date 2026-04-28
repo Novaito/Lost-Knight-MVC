@@ -17,8 +17,8 @@ public abstract class Consumnable extends Item {
 	 * @param posX X position
 	 * @param posY Y position
 	 */
-	public Consumnable(String name, String desc,int posX, int posY) {
-		super(name, desc,posX, posY);
+	public Consumnable(String name, String path, String desc,int posX, int posY) {
+		super(name, path, desc,posX, posY);
 	}
 
 	/**

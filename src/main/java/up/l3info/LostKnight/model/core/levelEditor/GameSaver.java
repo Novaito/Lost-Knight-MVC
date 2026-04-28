@@ -108,6 +108,9 @@ public class GameSaver {
         for(Exit e : loc.getExits().values())
             exits.put(e.getName(),exitToMap(e));
 
+        locData.put("sizeY", loc.getSizeY());
+        locData.put("sizeX", loc.getSizeX());
+        locData.put("tiles", loc.getTiles());
         locData.put("Items" , items);
         locData.put("characters" , chars);
         locData.put("exits" , exits);
@@ -131,9 +134,16 @@ public class GameSaver {
             e.printStackTrace();
         }
     }
-
-    public void save(){
+    
+    /**
+     * Save the game with adding new location
+     * @param newLocation can be null
+     */
+    public void save(Location newLocation){
         addAllLoc();
+        if (newLocation != null) {
+        	addAllLocAux(newLocation);
+        }
         serializeGame();
     }
 

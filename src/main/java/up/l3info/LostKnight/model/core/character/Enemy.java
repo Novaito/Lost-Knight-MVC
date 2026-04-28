@@ -22,8 +22,8 @@ public abstract class Enemy extends AttackableCharacter implements AwardableItem
 	 * @param items The lists of items he will give once defeated
 	 * @param w The weapon to inflict damage to the Hero
 	 */
-	public Enemy(String name, int hp, ArrayList<Item> items, String dialog, Weapon w,int posX,int posY) {
-		super(name, hp, dialog,posX,posY);
+	public Enemy(String name, int hp, ArrayList<Item> items, String path, String dialog, Weapon w,int posX,int posY) {
+		super(name, hp, path, dialog,posX,posY);
 		updateItems(items);
 		WEAPON = w;
 	}

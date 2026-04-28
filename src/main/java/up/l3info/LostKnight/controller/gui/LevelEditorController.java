@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import up.l3info.LostKnight.model.LevelEditorModel;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.LevelEditorView;
+import up.l3info.LostKnight.view.TilesView;
 
 public class LevelEditorController extends Controller<LevelEditorModel, LevelEditorView> {
 
@@ -33,8 +34,14 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 		buildListener();
 	}
 	
-	// TODO : SimpleBooleanProperty backMainMenu param
-	public static LevelEditorController create(LevelEditorModel lvlEditModel, SimpleBooleanProperty backToMenu) {
+	/**
+	 * Instantiate correctly the levelEditor
+	 * @param lvlEditModel
+	 * @param backToMenu
+	 * @param isLoading false/true
+	 * @return
+	 */
+	public static LevelEditorController create(LevelEditorModel lvlEditModel, SimpleBooleanProperty backToMenu, boolean isLoading) {
 		SimpleStringProperty holdingTexture = new SimpleStringProperty("");
 		SimpleIntegerProperty tileIndexUpdate = new SimpleIntegerProperty();
 		
@@ -43,7 +50,13 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 		// Extract datas
 		Map<String, List<String>> assetsMap = lvlEditModel.extractAssets("/img/");
 		
-		LevelEditorController lvlEditController = new LevelEditorController(lvlEditModel, LevelEditorView.create(assetsMap, 15, 15, holdingTexture, tileIndexUpdate), holdingTexture, tileIndexUpdate, backToMenu);
+		LevelEditorController lvlEditController;
+		
+		if (isLoading) {
+			lvlEditController = new LevelEditorController(lvlEditModel, LevelEditorView.load(assetsMap, lvlEditModel.getFloorTiles(), lvlEditModel.getOthersTiles(), lvlEditModel.getSizeX(), lvlEditModel.getSizeY(), holdingTexture, tileIndexUpdate), holdingTexture, tileIndexUpdate, backToMenu);
+		} else {
+			lvlEditController = new LevelEditorController(lvlEditModel, LevelEditorView.create(assetsMap, lvlEditModel.getSizeX(), lvlEditModel.getSizeY(), holdingTexture, tileIndexUpdate), holdingTexture, tileIndexUpdate, backToMenu);
+		}
 		
 		return lvlEditController;
 	}
@@ -58,6 +71,10 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 		
 		getView().getCancel().setOnAction(e -> {
 			backToMenu.set(true);
+		});
+		
+		getView().getSave().setOnAction(e -> {
+			getModel().save();
 		});
 	}
 }

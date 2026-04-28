@@ -23,7 +23,7 @@ public class Potion extends Consumnable {
 	 * @param posY Y position
 	 */
 	public Potion(String name, Spell spell, String description,int posX, int posY) {
-		super(name, description,posX,posY);
+		super(name, "", description,posX,posY);
 		this.spell = spell;
 	}
 	

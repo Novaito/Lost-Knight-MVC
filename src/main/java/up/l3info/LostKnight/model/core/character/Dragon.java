@@ -21,8 +21,8 @@ public class Dragon extends Enemy {
 	 * @param items Lists of items to award
 	 * @param dialog Dragon's dialog
 	 */
-	public Dragon(String name, int hp, ArrayList<Item> items, String dialog,int posX,int posY) {
-		super(name, hp, items, dialog, new Weapon("Claws", 31, 0, 0) , posX, posY);
+	public Dragon(String name, int hp, ArrayList<Item> items, String path, String dialog,int posX,int posY) {
+		super(name, hp, items, path, dialog, new Weapon("Claws", 31, 0, 0) , posX, posY);
 	}
 
 	/**

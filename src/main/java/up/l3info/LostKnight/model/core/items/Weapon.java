@@ -22,7 +22,7 @@ public class Weapon extends Item {
 	 * @param posY Y position
 	 */
 	public Weapon(String name, int damage, String desc,int posX, int posY) {
-		super(name, desc,posX,posY);
+		super(name, "", desc,posX,posY);
 		this.damage = damage;
 	}
 	

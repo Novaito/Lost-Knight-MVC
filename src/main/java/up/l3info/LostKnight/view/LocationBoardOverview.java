@@ -30,7 +30,7 @@ public class LocationBoardOverview extends GridPane implements View {
 		setVisible(true);
 	}
 	
-	private LocationBoardOverview(List<TilesView> tiles, 
+	private LocationBoardOverview(String[] tiles, 
 									int sizeX, 
 									int sizeY, 
 									SimpleStringProperty heldTexture,
@@ -40,7 +40,6 @@ public class LocationBoardOverview extends GridPane implements View {
 		CREATE = false;
 		nbColumns = sizeX;
 		nbRows = sizeY;
-		this.tilesList = tiles;
 		this.heldTexture = heldTexture;
 		this.tileIndexUpdate = tileIndexUpdate;
 		this.typeOfTileHeld = tileType;
@@ -73,21 +72,22 @@ public class LocationBoardOverview extends GridPane implements View {
 		return locOverview;
 	}
 	
-	public static LocationBoardOverview create(List<TilesView> tilesView, 
+	public static LocationBoardOverview create(String[] floorTiles,
+												String[] otherTiles,
 												int sizeX, 
 												int sizeY,
 												SimpleStringProperty heldTexture,
 												SimpleIntegerProperty tileIndexUpdate,
 												SimpleStringProperty tileType) {
 		
-		LocationBoardOverview locOverView = new LocationBoardOverview(tilesView, sizeX, sizeY, heldTexture, tileIndexUpdate, tileType);
+		LocationBoardOverview locOverView = new LocationBoardOverview(floorTiles, sizeX, sizeY, heldTexture, tileIndexUpdate, tileType);
+		locOverView.createTiles(floorTiles, otherTiles);
 		locOverView.addCells();
 		locOverView.style();
 		return locOverView;
 	}
 	
 	private void init() {
-		//setConstraints();
 		initCells();
 		addCells();
 	}
@@ -106,7 +106,6 @@ public class LocationBoardOverview extends GridPane implements View {
 				} else {
 					tile.setSndTile(heldTexture.getValue());
 				}
-				System.out.println("Index of the tile : " + tile.INDEX);
 				tileIndexUpdate.set(tile.INDEX);
 			}
 		});
@@ -135,6 +134,13 @@ public class LocationBoardOverview extends GridPane implements View {
 				j=0;
 				i++;
 			}
+		}
+	}
+	
+	private void createTiles(String[] floorPaths, String[] otherPaths) {
+		for (int i=0; i<nbColumns*nbRows; i++) {
+			if (otherPaths[i] != null) tilesList.add(TilesView.create(floorPaths[i], otherPaths[i], i));
+			else tilesList.add(TilesView.create(floorPaths[i], null, i));
 		}
 	}
 }

@@ -9,6 +9,7 @@ import up.l3info.LostKnight.model.core.map.Location;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GameLoader {
@@ -87,11 +88,9 @@ public class GameLoader {
     }
 
 
-
-
     /*-------------------------CHARGEMENT---------------------------------------*/
 
-    public Location load() throws IOException {
+    public Location load(String locationName) throws IOException {
 
         // C'est lui qui fait tout le travail de conversion JSON
         ObjectMapper mapper = new ObjectMapper();
@@ -107,13 +106,30 @@ public class GameLoader {
         // Passe 1 : créer toutes les Location vides d'abord
         // On est obligé de le faire AVANT de charger les exits
         // Sinon ça va déconner genre si la foret emmène vers la prairie mais que la prairie
-        // n'existe pas encore
+        // n'existe pas encore 
+        // (modifié: Thomas)
         for (String locName : map.keySet()) {
-            this.locationMap.put(locName, new Location(locName, "", 15, 15));
+            HashMap<String, Object> locContent = (HashMap<String, Object>) map.get(locName);
+            
+            int sizeX = (int) locContent.getOrDefault("sizeX", 15);
+            int sizeY = (int) locContent.getOrDefault("sizeY", 15);
+
+            // Extraction des tiles
+            String[] tilePaths = new String[0];
+            HashMap<String, Object> tilesMap = (HashMap<String, Object>) locContent.get("tiles");
+            if (tilesMap != null) {
+                List<String> floorList = (List<String>) tilesMap.get("floor");
+                if (floorList != null) {
+                    tilePaths = floorList.toArray(new String[0]);
+                }
+            }
+
+            this.locationMap.put(locName, new Location(locName, "", tilePaths, sizeX, sizeY));
         }
 
         // Passe 2 : maintenant que toutes les locations existent,
-        // on peut remplir leurs items, characters et exits
+        // on peut remplir leurs items, characters et exits 
+        // (modifié: Thomas)
         for (String locName : map.keySet()) {
             Location loc = this.locationMap.get(locName);
             HashMap<String, Object> locContent = (HashMap<String, Object>) map.get(locName);
@@ -124,7 +140,7 @@ public class GameLoader {
         }
 
         // On retourne la première location comme spawn
-        return this.locationMap.values().iterator().next();
+        return this.locationMap.get(locationName);
     }
 
 

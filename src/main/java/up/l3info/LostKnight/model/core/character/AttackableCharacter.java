@@ -25,8 +25,8 @@ public abstract class AttackableCharacter extends GameCharacter implements Attac
 	 * @param hp Max heal points that can have the character
 	 * @param dialog Character's dialog
 	 */
-	public AttackableCharacter(String name, int hp, String dialog,int posX,int posY) {
-		super(name, dialog,posX,posY);
+	public AttackableCharacter(String name, int hp, String path, String dialog,int posX,int posY) {
+		super(name, path, dialog,posX,posY);
 		this.hp = hp;
 		MAX_HP = hp;
 	}

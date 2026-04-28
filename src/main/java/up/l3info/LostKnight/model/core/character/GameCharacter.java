@@ -31,6 +31,7 @@ public abstract class GameCharacter extends GameObject implements LookableObject
 
 	private final String NAME;
 	private final String DIALOG;
+	private final String TILE_PATH;
 
 	/**
 	 * 
@@ -44,8 +45,9 @@ public abstract class GameCharacter extends GameObject implements LookableObject
 	 * @param name The character's name
 	 * @param dialog The character's dialog
 	 */
-	public GameCharacter(String name, String dialog, int posX , int posY) {
+	public GameCharacter(String name, String path, String dialog, int posX , int posY) {
 		this.NAME = name;
+		this.TILE_PATH = path;
 		this.DIALOG = dialog;
 		this.setPosX(posX);
 		this.setPosY(posY);
@@ -61,7 +63,8 @@ public abstract class GameCharacter extends GameObject implements LookableObject
 	 */
 	public GameCharacter(String name, String fn , boolean fromFile, int posX, int posY){
 
-		this.NAME = name; 
+		this.NAME = name;
+		this.TILE_PATH = "";
 		String dial = "";
 		this.setPosX(posX);
 		this.setPosY(posY);
@@ -83,6 +86,14 @@ public abstract class GameCharacter extends GameObject implements LookableObject
 		}
 		this.DIALOG = dial;
 		System.out.println(DIALOG);
+	}
+	
+	/**
+	 * Return the path of the image
+	 * @return path
+	 */
+	public String getTilePath() {
+		return TILE_PATH;
 	}
 
 	/**

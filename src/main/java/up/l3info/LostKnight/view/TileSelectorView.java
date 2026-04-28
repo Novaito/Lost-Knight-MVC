@@ -58,7 +58,6 @@ public class TileSelectorView extends TabPane implements View {
 			TilesView tile = TilesView.create(getClass().getResource(pathPrefix + tileSrc).toExternalForm(), null, i);
 			tile.setOnMouseClicked((e) -> {
 				if (heldTexture.getValue() != tile.getPrimaryTexture()) {
-					System.out.println("Selecting " + tile.getPrimaryTexture());
 					heldTexture.set(tile.getPrimaryTexture());
 					typeOfTile.setValue(tabName);
 				}

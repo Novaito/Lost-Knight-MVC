@@ -47,26 +47,28 @@ public class LevelEditorView extends BorderPane implements View {
 	
 	
 	public static LevelEditorView load(Map<String,List<String>> assetsMap, 
-											List<TilesView> listImgSrc,
+											String[] floorTiles,
+											String[] otherTiles,
 											int sizeX, 
 											int sizeY,
 											SimpleStringProperty holdingTexture,
 											SimpleIntegerProperty tileIndexUpdate) {
 		
 		LevelEditorView lvlEditView = new LevelEditorView();
-		lvlEditView.init(assetsMap, listImgSrc, sizeX, sizeY, holdingTexture, tileIndexUpdate);
+		lvlEditView.init(assetsMap, floorTiles, otherTiles, sizeX, sizeY, holdingTexture, tileIndexUpdate);
 		return lvlEditView;
 	}
 	
 	private void init(Map<String,List<String>> assetsMap, 
-						List<TilesView> listTiles, 
+						String[] floorTiles, 
+						String[] otherTiles,
 						int sizeX, 
 						int sizeY, 
 						SimpleStringProperty holdingTexture,
 						SimpleIntegerProperty tileIndexUpdate) {
 		
 		sidePanel = EditorSidePanelView.create(assetsMap, holdingTexture);
-		locOverview = LocationBoardOverview.create(listTiles, sizeX, sizeY, holdingTexture, tileIndexUpdate, sidePanel.typeOfTileProperty());
+		locOverview = LocationBoardOverview.create(floorTiles, otherTiles, sizeX, sizeY, holdingTexture, tileIndexUpdate, sidePanel.typeOfTileProperty());
 	}
 	
 	private void init(Map<String,List<String>> assetsMap,
@@ -77,6 +79,8 @@ public class LevelEditorView extends BorderPane implements View {
 		
 		sidePanel = EditorSidePanelView.create(assetsMap, holdingTexture);
 		locOverview = LocationBoardOverview.create(sizeX, sizeY, holdingTexture, tileIndexUpdate, sidePanel.typeOfTileProperty());
+		
+		
 	}
 	
 	public String getSelectedTab() {

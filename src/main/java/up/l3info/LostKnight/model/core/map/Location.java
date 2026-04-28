@@ -4,8 +4,8 @@ import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.model.core.items.*;
 import up.l3info.LostKnight.model.core.miscellaneous.CaseInsensitiveHashMap;
 import up.l3info.LostKnight.model.core.miscellaneous.LookableObject;
-import up.l3info.LostKnight.mvc.Model;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +20,7 @@ public class Location implements LookableObject{
 	private Map<String, Exit> exits;
 	private String name;
 	private String description;
+	private String[] tilePaths;
 	private int sizeX;
 	private int sizeY;
 	
@@ -29,7 +30,7 @@ public class Location implements LookableObject{
 	 * @param name The name of the location
 	 * @param description The description of the location
 	 */
-	public Location(String name , String description, int sizeX, int sizeY) {
+	public Location(String name , String description, String[] tilePaths, int sizeX, int sizeY) {
 		this.name = name;
 		this.description = description;
 		this.exits = new CaseInsensitiveHashMap<Exit>();
@@ -37,6 +38,7 @@ public class Location implements LookableObject{
 		this.characters = new CaseInsensitiveHashMap<GameCharacter>();
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
+		this.tilePaths = tilePaths;
 	}
 	
 
@@ -70,6 +72,10 @@ public class Location implements LookableObject{
 	
 	public int getSizeY() {
 		return sizeY;
+	}
+	
+	public String[] getTiles() {
+		return tilePaths;
 	}
 
 	/**

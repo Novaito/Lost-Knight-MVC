@@ -21,6 +21,7 @@ public abstract class Item extends GameObject implements LookableObject {
 	private String name;
 	private String description;
 	private static final String DEFAULT_DESC = "This is a %s";
+	private final String TILE_PATH;
 
 	/**
 	 * This constructor creates an Item with its name, a description, posX and posY
@@ -28,8 +29,9 @@ public abstract class Item extends GameObject implements LookableObject {
 	 * @param name The name of the item
 	 * @param desc The description of the item
 	 */
-	public Item(String name, String desc, int posX, int posY) {
+	public Item(String name, String path, String desc, int posX, int posY) {
 		this.name = name;
+		this.TILE_PATH = path;
 		this.setPosX(posX);
 		this.setPosY(posY);
 		if(desc == null) {
@@ -44,8 +46,12 @@ public abstract class Item extends GameObject implements LookableObject {
 	 * 
 	 * @param name The name of the item
 	 */
-	public Item(String name,int posX, int posY) {
-		this(name,null,posX,posY);
+	public Item(String name, int posX, int posY) {
+		this(name, "", null, posX, posY);
+	}
+	
+	public String getTilePath() {
+		return TILE_PATH;
 	}
 
 	/**

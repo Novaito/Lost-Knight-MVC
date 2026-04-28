@@ -12,7 +12,7 @@ import up.l3info.LostKnight.mvc.View;
 public class EditorSidePanelView extends VBox implements View {
 	
 	private TileSelectorView tileSelector;
-	private SavingSection savingSection; 
+	private SavingSection savingSection;
 
 	@Override
 	public void hide() {

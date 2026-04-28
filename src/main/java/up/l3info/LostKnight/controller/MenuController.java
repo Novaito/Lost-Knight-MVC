@@ -16,13 +16,15 @@ import up.l3info.LostKnight.view.MenuView;
 
 public class MenuController extends Controller<MenuModel, MenuView> {
 
+	private static final int DEFAULT_SIZE_EDITOR = 5;
+
     private final Stage stage;
     private final GameModel gameModel;
     private final SimpleBooleanProperty backToMenu;
     private Scene menuScene;
 
     private MenuController(Stage p_stage, GameModel p_gameModel) {
-        super(new MenuModel(), MenuView.create());
+        super(new MenuModel(), MenuView.create(DEFAULT_SIZE_EDITOR, DEFAULT_SIZE_EDITOR));
         this.stage     = p_stage;
         this.gameModel = p_gameModel;
         this.backToMenu = new SimpleBooleanProperty(false);
@@ -40,7 +42,8 @@ public class MenuController extends Controller<MenuModel, MenuView> {
     public void init() {
     	getView().getGraphique().setOnAction(e -> launchGraphique());
         getView().getTextuelle().setOnAction(e -> launchTextuelle());
-        getView().getLevelEditor().setOnAction(e -> launchEditor());
+        getView().getLevelEditorCreating().setOnAction(e -> launchEditorCreating());
+        getView().getLevelEditorLoading().setOnAction(e -> launchEditorLoading());
         getView().getQuitter().setOnAction(e -> Platform.exit());
         
         backToMenu.addListener((observable, oldValue, newValue) -> {
@@ -67,10 +70,31 @@ public class MenuController extends Controller<MenuModel, MenuView> {
         this.stage.setTitle("Game");
     }
     
-    private void launchEditor() {
-    	Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(null, 15*15, false), backToMenu);
-    	stage.setScene(new Scene(lvlController.getView()));
-    	stage.setTitle("Level Editor");
+    private void launchEditorCreating() {
+    	getView().showCreateSection();
+    	stage.minWidthProperty().bind(getView().widthProperty());
+    	stage.minHeightProperty().bind(getView().heightProperty());
+    	
+    	getView().getConfirmCreateButton().setOnAction(e -> {
+    		int sizeX = (int)getView().xBlocks();
+    		int sizeY = (int)getView().yBlocks();
+    		Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(gameModel.getGame(), getView().createdName(), sizeX, sizeY, false), backToMenu, false);
+    		stage.setScene(new Scene(lvlController.getView()));
+    		stage.setTitle("Level Editor");
+    	});
+    	
+    }
+    
+    private void launchEditorLoading() {
+    	getView().showLoadSection();
+    	stage.minWidthProperty().bind(getView().widthProperty());
+    	stage.minHeightProperty().bind(getView().heightProperty());
+    	
+    	getView().getConfirmLoadButton().setOnAction(e -> {
+    		Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(gameModel.getGame(), getView().loadedName(), 5, 5, false), backToMenu, true);
+    		stage.setScene(new Scene(lvlController.getView()));
+    		stage.setTitle("Level Editor");
+    	});
     }
 
     //pas encore fait

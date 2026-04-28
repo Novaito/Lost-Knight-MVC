@@ -28,21 +28,51 @@ public class DemoMain extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		String[] paths = {
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+          "/img/floor/grass.png",
+		};
 		
-		Location spawn = new Location("Meadow", "A cool meadow", 15, 15); //TODO: à corriger nb de tile w x h
-		Hero hero = new Hero("Hero", 100, "hello im hero", 100, 100);
+		Location spawn = new Location("Meadow", "A cool meadow", paths, 15, 15);
+		Hero hero = new Hero("Hero", 100, "/img/profileHero.png", "hello im hero", 100, 100);
+		/**
+		 * 
 		hero.setWeapon(new Weapon("sword", 20, 0, 0));
 		hero.setHp(20);
 
 		
-		Food pig_1 = new Food("pig_1", 20, 300, 100);
+		Food pig_1 = new Food("pig_1", "img/sprite/..." 20, 300, 100);
 		Food pig_2 = new Food("pig_2", 20, 200, 140);
 		Food pig_3 = new Food("pig_3", 20, 350, 400);
 		spawn.addItem(pig_1);
 		spawn.addItem(pig_2);
 		spawn.addItem(pig_3);
+		 */
 		
-		AttackableCharacter orc = new Orc("Orc", 100, null, "je suis mechant", 200, 300);
+		AttackableCharacter orc = new Orc("Orc", 100, null, "/img/sprite/orc.png", "je suis mechant", 200, 300);
 		orc.setWeapon(new Weapon("claws", 10, 0, 0));
 		
 		spawn.addCharacters(orc);
@@ -53,7 +83,7 @@ public class DemoMain extends Application{
 
 
 		GameSaver saver = new GameSaver(new File("testSave.json") , game);
-		saver.save();
+		saver.save(null);
 
 		primaryStage.show();	
 	}
