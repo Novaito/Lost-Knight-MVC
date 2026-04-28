@@ -18,7 +18,15 @@ import up.l3info.LostKnight.mvc.Model;
  * 
  */
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Orc.class,    name = "Orc"),
+		@JsonSubTypes.Type(value = Dragon.class, name = "Dragon"),
+		@JsonSubTypes.Type(value = Undead.class, name = "Undead")
+})
 public abstract class GameCharacter extends GameObject implements LookableObject {
 
 	private final String NAME;
