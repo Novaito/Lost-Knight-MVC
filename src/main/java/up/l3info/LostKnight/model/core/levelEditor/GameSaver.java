@@ -112,7 +112,17 @@ public class GameSaver {
         locData.put("sizeX", loc.getSizeX());
         locData.put("tiles", loc.getTiles());
         locData.put("Items" , items);
-        locData.put("characters" , chars);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String charsJson = mapper.writerFor(
+                mapper.getTypeFactory().constructMapType(HashMap.class, String.class, GameCharacter.class)
+            ).writeValueAsString(chars);
+            locData.put("characters", mapper.readTree(charsJson));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         locData.put("exits" , exits);
 
         gameMap.put(loc.getName() , locData);

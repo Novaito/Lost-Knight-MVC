@@ -43,8 +43,10 @@ public class LevelEditorModel implements Model {
 		if (isExist) {
 			GameLoader loader = new GameLoader(new File(SAVE_FILE));
 			Location loc;
+			System.out.println(locName);
 			try {
 				loc = loader.load(locName);
+				System.out.println("Model" + loc.getName());
 				this.sizeX = loc.getSizeX();
 				this.sizeY = loc.getSizeY();
 				backLayerSrc = loc.getTiles();
@@ -72,11 +74,11 @@ public class LevelEditorModel implements Model {
 	}
 	
 	private void addFloorSrc(String tileSrc, int index) {
-		backLayerSrc[index] = tileSrc;
+		backLayerSrc[index] = formatPath(tileSrc);
 	}
 	
 	private void addSpriteSrc(String tileSrc, int index) {
-		upLayerSrc[index] = tileSrc;
+		upLayerSrc[index] = formatPath(tileSrc);
 	}
 	
 	private void addOtherTiles(Location loc) {
@@ -131,14 +133,13 @@ public class LevelEditorModel implements Model {
 		int k=1;
 		for (int i=0; i<upLayerSrc.length; i++) {
 			if (upLayerSrc[i] != null ) {
-				String path = formatPath(upLayerSrc[i]);
-				String type = getTileType(path);
+				String type = getTileType(upLayerSrc[i]);
 				if (type.equals("sprite")) {
-					loc.addCharacters(new Orc(type + j, 100, null, path, null, (i / sizeX), (i % sizeY)));
+					loc.addCharacters(new Orc(type + j, 100, null, upLayerSrc[i], null, (i / sizeX), (i % sizeY)));
 					j++;
 				}
 				if (type.equals("item")) {
-					loc.addItem(new Food(type + k, 15, path, (i / sizeX), (i % sizeY)));
+					loc.addItem(new Food(type + k, 15, upLayerSrc[i], (i / sizeX), (i % sizeY)));
 					k++;
 				}				
 			}

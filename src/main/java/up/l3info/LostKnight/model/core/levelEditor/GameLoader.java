@@ -54,6 +54,7 @@ public class GameLoader {
                                 ObjectMapper mapper) throws IOException {
         Object charsContenue = p_content.get("characters");
         if (charsContenue == null) return;
+        System.out.println("ici 2.1");
 
         HashMap<String, Object> charsMap = (HashMap<String, Object>) charsContenue;
 
@@ -61,6 +62,7 @@ public class GameLoader {
             // Même principe que pour les items :
             String json = mapper.writeValueAsString(entry.getValue());
             GameCharacter character = mapper.readValue(json, GameCharacter.class);
+            System.out.println("ici 2.2");
             p_loc.addCharacters(character);
         }
     }
@@ -103,6 +105,8 @@ public class GameLoader {
                 mapper.getTypeFactory().constructMapType(HashMap.class, String.class, Object.class)
         );
 
+        System.out.println("ici 1");
+        
         // Passe 1 : créer toutes les Location vides d'abord
         // On est obligé de le faire AVANT de charger les exits
         // Sinon ça va déconner genre si la foret emmène vers la prairie mais que la prairie
@@ -116,16 +120,16 @@ public class GameLoader {
 
             // Extraction des tiles
             String[] tilePaths = new String[0];
-            HashMap<String, Object> tilesMap = (HashMap<String, Object>) locContent.get("tiles");
-            if (tilesMap != null) {
-                List<String> floorList = (List<String>) tilesMap.get("floor");
-                if (floorList != null) {
-                    tilePaths = floorList.toArray(new String[0]);
-                }
+            List<String> floorList = (List<String>) locContent.get("tiles");
+            if (floorList != null) {
+                tilePaths = floorList.toArray(new String[0]);
+            } else {
+            	System.out.println("tilesExtract null");
             }
 
             this.locationMap.put(locName, new Location(locName, "", tilePaths, sizeX, sizeY));
         }
+        System.out.println("ici 2");
 
         // Passe 2 : maintenant que toutes les locations existent,
         // on peut remplir leurs items, characters et exits 
@@ -136,6 +140,7 @@ public class GameLoader {
 
             loadItems(loc, locContent, mapper);
             loadCharacters(loc, locContent, mapper);
+            System.out.println("ici 3");
             loadExits(loc, locContent);
         }
 

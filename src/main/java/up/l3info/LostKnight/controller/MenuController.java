@@ -91,7 +91,8 @@ public class MenuController extends Controller<MenuModel, MenuView> {
     	stage.minHeightProperty().bind(getView().heightProperty());
     	
     	getView().getConfirmLoadButton().setOnAction(e -> {
-    		Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(new LevelEditorModel(gameModel.getGame(), getView().loadedName(), 5, 5, false), backToMenu, true);
+    		LevelEditorModel lvlEditModel = new LevelEditorModel(gameModel.getGame(), getView().loadedName(), 5, 5, true);
+    		Controller<LevelEditorModel, LevelEditorView> lvlController = LevelEditorController.create(lvlEditModel, backToMenu, true);
     		stage.setScene(new Scene(lvlController.getView()));
     		stage.setTitle("Level Editor");
     	});

@@ -2,6 +2,9 @@ package up.l3info.LostKnight.model.core.character;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.items.Weapon;
 
@@ -22,8 +25,15 @@ public class Orc extends Enemy {
 	 * @param items Lists of items to award
 	 * @param dialog Orc's dialog
 	 */
-	public Orc(String name, int hp, ArrayList<Item> items, String path, String dialog , int posX, int posY) {
-		super(name, hp, items, path, dialog, new Weapon("AxRock", 15, 0, 0) , posX, posY);
+	@JsonCreator
+	public Orc(@JsonProperty("name")     String name,
+           @JsonProperty("hp")       int hp,
+		   ArrayList<Item> items,
+           @JsonProperty("tilePath") String path,
+           @JsonProperty("dialog")   String dialog,
+           @JsonProperty("posX")     int posX,
+           @JsonProperty("posY")     int posY) {
+		super(name, hp, items, path, dialog, new Weapon("AxRock", 15, 0, 0), posX, posY);
 	}
 
 	/**
