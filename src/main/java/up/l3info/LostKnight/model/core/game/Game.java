@@ -1,19 +1,14 @@
 package up.l3info.LostKnight.model.core.game;
 
-import java.awt.TextArea;
 import java.util.*;
 
 import up.l3info.LostKnight.model.core.character.*;
 import up.l3info.LostKnight.model.core.items.Chest;
-import up.l3info.LostKnight.model.core.items.Consumnable;
 import up.l3info.LostKnight.model.core.items.Container;
 import up.l3info.LostKnight.model.core.items.Food;
 import up.l3info.LostKnight.model.core.items.Item;
-import up.l3info.LostKnight.model.core.items.Key;
-import up.l3info.LostKnight.model.core.items.Weapon;
 import up.l3info.LostKnight.model.core.map.*;
 import up.l3info.LostKnight.model.core.miscellaneous.*;
-import up.l3info.LostKnight.mvc.Model;
 
 /**
  * This class handle all the game loop and all the game logic

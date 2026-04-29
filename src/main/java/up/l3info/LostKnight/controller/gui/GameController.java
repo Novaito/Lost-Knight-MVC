@@ -8,14 +8,11 @@ import javafx.scene.Node;
 import up.l3info.LostKnight.model.GameModel;
 import up.l3info.LostKnight.model.HeroModel;
 import up.l3info.LostKnight.model.LocationModel;
-import up.l3info.LostKnight.model.core.character.Hero;
-import up.l3info.LostKnight.model.core.game.Game;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.mvc.Model;
 import up.l3info.LostKnight.mvc.View;
 import up.l3info.LostKnight.view.CharactersView;
 import up.l3info.LostKnight.view.GameView;
-import up.l3info.LostKnight.view.ItemView;
 import up.l3info.LostKnight.view.LocationView;
 
 public class GameController extends Controller<GameModel, GameView>{

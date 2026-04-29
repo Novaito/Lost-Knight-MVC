@@ -6,7 +6,6 @@ import up.l3info.LostKnight.model.core.game.Game;
 import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.model.core.map.Exit;
 import up.l3info.LostKnight.model.core.map.Location;
-import up.l3info.LostKnight.model.core.miscellaneous.GameObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;

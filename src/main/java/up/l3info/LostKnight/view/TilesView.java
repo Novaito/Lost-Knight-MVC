@@ -66,7 +66,6 @@ public class TilesView extends StackPane implements View {
 	}
 	
 	public void setTile(String imgSrc) {
-		System.out.println(imgSrc);
 		ImagePattern img = new ImagePattern(new Image(imgSrc));
 		primRect.setFill(img);
 	}

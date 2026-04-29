@@ -1,7 +1,6 @@
 package up.l3info.LostKnight.controller.gui;
 
 import up.l3info.LostKnight.model.EnemyModel;
-import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.CharactersView;
 

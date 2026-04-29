@@ -2,7 +2,6 @@ package up.l3info.LostKnight.controller.gui;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -10,7 +9,6 @@ import javafx.beans.property.SimpleStringProperty;
 import up.l3info.LostKnight.model.LevelEditorModel;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.LevelEditorView;
-import up.l3info.LostKnight.view.TilesView;
 
 public class LevelEditorController extends Controller<LevelEditorModel, LevelEditorView> {
 
@@ -54,7 +52,7 @@ public class LevelEditorController extends Controller<LevelEditorModel, LevelEdi
 		LevelEditorController lvlEditController;
 		
 		if (isLoading) {
-			System.out.println("Controller\n" + +lvlEditModel.getFloorTiles().length);
+			//System.out.println("Controller\n" + +lvlEditModel.getFloorTiles().length);
 			//Stream.of(lvlEditModel.getFloorTiles()).forEach(e -> System.out.println(e));
 			lvlEditController = new LevelEditorController(lvlEditModel, LevelEditorView.load(assetsMap, lvlEditModel.getFloorTiles(), lvlEditModel.getOthersTiles(), lvlEditModel.getSizeX(), lvlEditModel.getSizeY(), holdingTexture, tileIndexUpdate), holdingTexture, tileIndexUpdate, backToMenu);
 		} else {

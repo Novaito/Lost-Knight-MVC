@@ -2,7 +2,6 @@ package up.l3info.LostKnight.model.core.character;
 
 
 import up.l3info.LostKnight.model.core.items.*;
-import up.l3info.LostKnight.mvc.Model;
 
 /**
  * This class represents a specific character : the Hero.

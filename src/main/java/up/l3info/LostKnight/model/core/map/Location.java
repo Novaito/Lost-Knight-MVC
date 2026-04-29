@@ -5,7 +5,6 @@ import up.l3info.LostKnight.model.core.items.*;
 import up.l3info.LostKnight.model.core.miscellaneous.CaseInsensitiveHashMap;
 import up.l3info.LostKnight.model.core.miscellaneous.LookableObject;
 
-import java.util.List;
 import java.util.Map;
 
 /**

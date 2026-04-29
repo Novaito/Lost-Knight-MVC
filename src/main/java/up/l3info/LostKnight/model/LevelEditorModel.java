@@ -29,7 +29,6 @@ public class LevelEditorModel implements Model {
 	private String[] upLayerSrc;
 	private int sizeX;
 	private int sizeY;
-	private boolean isExistedBefore;
 	private final String SAVE_FILE = "./save/gamesave.json";
 	
 	@Override
@@ -38,15 +37,12 @@ public class LevelEditorModel implements Model {
 	public LevelEditorModel(Game game, String locName, int sizeX, int sizeY, boolean isExist) {
 		this.game = game;
 		this.locName = locName;
-		isExistedBefore = isExist;
 		
 		if (isExist) {
 			GameLoader loader = new GameLoader(new File(SAVE_FILE));
 			Location loc;
-			System.out.println(locName);
 			try {
 				loc = loader.load(locName);
-				System.out.println("Model" + loc.getName());
 				this.sizeX = loc.getSizeX();
 				this.sizeY = loc.getSizeY();
 				backLayerSrc = loc.getTiles();

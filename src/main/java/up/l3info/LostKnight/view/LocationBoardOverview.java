@@ -138,9 +138,7 @@ public class LocationBoardOverview extends GridPane implements View {
 	}
 	
 	private void createTiles(String[] floorPaths, String[] otherPaths) {
-		System.out.println(">>>>");
 		for (int i=0; i<nbColumns*nbRows; i++) {
-			System.out.println(floorPaths[i] + "\n" + otherPaths[i]);
 			if (otherPaths[i] != null) tilesList.add(TilesView.create(floorPaths[i], otherPaths[i], i));
 			else tilesList.add(TilesView.create(floorPaths[i], null, i));
 		}

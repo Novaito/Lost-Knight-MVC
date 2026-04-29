@@ -1,7 +1,6 @@
 package up.l3info.LostKnight.controller.gui;
 
 import up.l3info.LostKnight.model.WeaponModel;
-import up.l3info.LostKnight.model.core.items.Item;
 import up.l3info.LostKnight.mvc.Controller;
 import up.l3info.LostKnight.view.ItemView;
 

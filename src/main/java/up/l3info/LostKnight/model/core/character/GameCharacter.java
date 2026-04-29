@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 import up.l3info.LostKnight.model.core.miscellaneous.*;
-import up.l3info.LostKnight.mvc.Model;
 
 
 /**

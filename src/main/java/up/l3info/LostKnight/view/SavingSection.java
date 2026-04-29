@@ -3,7 +3,6 @@ package up.l3info.LostKnight.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import up.l3info.LostKnight.mvc.View;
 
