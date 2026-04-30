@@ -21,6 +21,7 @@ import up.l3info.LostKnight.model.core.game.Game;
 import up.l3info.LostKnight.model.core.items.Weapon;
 import java.io.IOException;
 import java.io.File;
+import javafx.scene.control.TextInputDialog;
 
 public class MenuController extends Controller<MenuModel, MenuView> {
 
@@ -112,13 +113,13 @@ public class MenuController extends Controller<MenuModel, MenuView> {
     }
 
     private void launchGameFromLevel() {
-        getView().showLoadSection();
-        stage.minWidthProperty().bind(getView().widthProperty());
-        stage.minHeightProperty().bind(getView().heightProperty());
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Jouer un level édité");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Nom du level :");
 
-        getView().getConfirmLoadButton().setOnAction(e -> {
+        dialog.showAndWait().ifPresent(levelName -> {
             try {
-                String levelName = getView().loadedName();
                 GameLoader loader = new GameLoader(new File("./save/" + levelName + ".json"));
                 Location spawn = loader.load(levelName);
 
