@@ -110,9 +110,13 @@ public class LevelEditorModel implements Model {
 		for (final File f: imgDir.listFiles()) {
 			if (f.isDirectory()) {
 				List<String> listFile = new ArrayList<>();
+				
+				String[] dirList = f.getPath().split("/");
+				String dirName = dirList[dirList.length-1];
+				
 				Stream.of(f.listFiles())
 					.filter(file -> !file.isDirectory())
-					.forEach(file -> listFile.add(file.getName()));
+					.forEach(file -> listFile.add(path + dirName + "/" + file.getName()));
 				// Debug paths
 				//Stream.of(listFile).forEach(x -> System.out.println(x));
 				

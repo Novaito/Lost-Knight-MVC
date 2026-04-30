@@ -50,12 +50,12 @@ public class TileSelectorView extends TabPane implements View {
 		tab.setText(tabName);
 		
 		GridPane assetsGrid = new GridPane();
-		String pathPrefix = "/img/" + tabName + "/";
+		//String pathPrefix = "/img/" + tabName + "/";
 		
 		int i=0;
 		int j=0;
 		for (String tileSrc : srcTiles) {
-			TilesView tile = TilesView.create(getClass().getResource(pathPrefix + tileSrc).toExternalForm(), null, i);
+			TilesView tile = TilesView.create(getClass().getResource(tileSrc).toExternalForm(), null, i);
 			tile.setOnMouseClicked((e) -> {
 				if (heldTexture.getValue() != tile.getPrimaryTexture()) {
 					heldTexture.set(tile.getPrimaryTexture());
