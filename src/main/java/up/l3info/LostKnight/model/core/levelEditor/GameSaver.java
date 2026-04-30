@@ -94,12 +94,23 @@ public class GameSaver {
         visited.add(loc.getName());
 
         HashMap<String, Object> locData = new HashMap<>();
-        HashMap<String, Item> items = new HashMap<>();
+        HashMap<String, Object> items = new HashMap<>();
         HashMap<String, GameCharacter> chars = new HashMap<>();
         HashMap<String, Object> exits = new HashMap<>();
 
-        for(Item i : loc.getItems().values())
-            items.put(i.getName(),i);
+        //pour les items il faut faire une boucle comme ça
+        //avec un mapper temporaire car il y a des soucis avec
+        //items car c'est abstrait
+        //et que dans notre cas, il y a des cochons(Food.java)
+        //et pas des Item.java
+        //faire un mapper à chaque itération
+        //il s'appelle mapper2 car il y a deja mapper en dessous
+        ObjectMapper mapper2 = new ObjectMapper();
+        for (Item i : loc.getItems().values()) {
+            HashMap<String, Object> itemMap = mapper2.convertValue(i, HashMap.class);
+            itemMap.put("type", i.getClass().getSimpleName());
+            items.put(i.getName(), itemMap);
+        }
 
         for(GameCharacter c : loc.getCharacters().values())
             chars.put(c.getName(),c);

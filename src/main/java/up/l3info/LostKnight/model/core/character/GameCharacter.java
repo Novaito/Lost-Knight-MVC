@@ -9,17 +9,17 @@ import java.nio.charset.StandardCharsets;
 
 import up.l3info.LostKnight.model.core.miscellaneous.*;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * This abstract class gather all characters that you can interact with.
- * 
+ *
  * @author Thomas & Noé
- * 
+ *
  */
-
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Orc.class,    name = "Orc"),

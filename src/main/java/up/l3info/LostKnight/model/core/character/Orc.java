@@ -26,13 +26,13 @@ public class Orc extends Enemy {
 	 * @param dialog Orc's dialog
 	 */
 	@JsonCreator
-	public Orc(@JsonProperty("name")     String name,
-           @JsonProperty("hp")       int hp,
-		   ArrayList<Item> items,
-           @JsonProperty("tilePath") String path,
-           @JsonProperty("dialog")   String dialog,
-           @JsonProperty("posX")     int posX,
-           @JsonProperty("posY")     int posY) {
+	public Orc(@JsonProperty("name") String name,
+           @JsonProperty("hp") int hp,
+			   @JsonProperty("items") ArrayList<Item> items,
+			   @JsonProperty("tilePath") String path,
+           @JsonProperty("dialog") String dialog,
+           @JsonProperty("posX") int posX,
+           @JsonProperty("posY") int posY) {
 		super(name, hp, items, path, dialog, new Weapon("AxRock", 15, 0, 0), posX, posY);
 	}
 

@@ -1,6 +1,9 @@
 package up.l3info.LostKnight.model.core.items;
 
 import up.l3info.LostKnight.model.core.character.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * This class represents the Food in the game. It extends Consumnable.
@@ -32,8 +35,13 @@ public class Food extends Consumnable {
 	 * @param posX X position
 	 * @param posY Y position
 	 */
-	public Food(String name, int foodPoints, String path, int posX, int posY) {
-		this(name, foodPoints, path,  String.format(DEFAULT_DESC, name), posX, posY);
+	@JsonCreator
+	public Food(@JsonProperty("name") String name,
+				@JsonProperty("foodPoints") int foodPoints,
+				@JsonProperty("tilePath") String path,
+				@JsonProperty("posX") int posX,
+				@JsonProperty("posY") int posY) {
+		this(name, foodPoints, path, String.format(DEFAULT_DESC, name), posX, posY);
 	}
 	
 	/**

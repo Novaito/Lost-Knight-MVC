@@ -1,5 +1,8 @@
 package up.l3info.LostKnight.model.core.items;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import up.l3info.LostKnight.model.core.character.AttackableCharacter;
 
 /**
@@ -7,6 +10,7 @@ import up.l3info.LostKnight.model.core.character.AttackableCharacter;
  * 
  * @author Noé
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Weapon extends Item {
 
 	private int damage;
@@ -34,8 +38,12 @@ public class Weapon extends Item {
 	 * @param posX X position
 	 * @param posY Y position
 	 */
-	public Weapon(String name, int damage,int posX, int posY) {
-		this(name, damage, String.format(DEFAULT_DESC, name, damage),posX,posY);
+	@JsonCreator
+	public Weapon(@JsonProperty("name") String name,
+				  @JsonProperty("damages") int damage,
+				  @JsonProperty("posX") int posX,
+				  @JsonProperty("posY") int posY) {
+		this(name, damage, String.format(DEFAULT_DESC, name, damage), posX, posY);
 		this.damage = damage;
 	}
 
