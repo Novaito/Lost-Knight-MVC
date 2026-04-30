@@ -46,6 +46,11 @@ public class GameLoader {
             // Jackson lit le champ "type" dans le JSON ("Food" ou "Weapon")
             String json = mapper.writeValueAsString(entry.getValue());
             Item item = mapper.readValue(json, Item.class);
+
+            //que dieu fasse que ça marche
+            item.setPosX(item.getPosX() * 50);
+            item.setPosY(item.getPosY() * 50);
+
             loc.addItem(item);
         }
     }
@@ -65,6 +70,10 @@ public class GameLoader {
             // (Thomas) -----> L'exception est levée ici je n'arrive pas à debug 
             GameCharacter character = mapper.readValue(json, GameCharacter.class);
             //System.out.println("ici 2.2");
+
+            character.setPosX(character.getPosX() * 50);
+            character.setPosY(character.getPosY() * 50);
+
             p_loc.addCharacters(character);
         }
     }

@@ -14,6 +14,14 @@ import up.l3info.LostKnight.view.GameView;
 import up.l3info.LostKnight.view.LevelEditorView;
 import up.l3info.LostKnight.view.MenuView;
 
+import up.l3info.LostKnight.model.core.levelEditor.GameLoader;
+import up.l3info.LostKnight.model.core.map.Location;
+import up.l3info.LostKnight.model.core.character.Hero;
+import up.l3info.LostKnight.model.core.game.Game;
+import up.l3info.LostKnight.model.core.items.Weapon;
+import java.io.IOException;
+import java.io.File;
+
 public class MenuController extends Controller<MenuModel, MenuView> {
 
 	private static final int DEFAULT_SIZE_EDITOR = 5;
@@ -45,6 +53,7 @@ public class MenuController extends Controller<MenuModel, MenuView> {
         getView().getLevelEditorCreating().setOnAction(e -> launchEditorCreating());
         getView().getLevelEditorLoading().setOnAction(e -> launchEditorLoading());
         getView().getQuitter().setOnAction(e -> Platform.exit());
+        getView().getPlayLevel().setOnAction(e -> launchGameFromLevel());
         
         backToMenu.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
@@ -101,4 +110,32 @@ public class MenuController extends Controller<MenuModel, MenuView> {
     //pas encore fait
     private void launchTextuelle() {
     }
+
+    private void launchGameFromLevel() {
+        getView().showLoadSection();
+        stage.minWidthProperty().bind(getView().widthProperty());
+        stage.minHeightProperty().bind(getView().heightProperty());
+
+        getView().getConfirmLoadButton().setOnAction(e -> {
+            try {
+                String levelName = getView().loadedName();
+                GameLoader loader = new GameLoader(new File("./save/" + levelName + ".json"));
+                Location spawn = loader.load(levelName);
+
+                Hero hero = new Hero("Hero", 100, "/img/profileHero.png", "hello im hero", 1, 1);
+                hero.setWeapon(new Weapon("sword", 20, 0, 0));
+                hero.setHp(100);
+
+                Game game = new Game(hero, spawn);
+                GameModel freshModel = new GameModel(game);
+
+                Controller<GameModel, GameView> gameController = GameController.create(freshModel);
+                stage.setScene(new Scene(gameController.getView()));
+                stage.setTitle("Game");
+            } catch (IOException ex) {
+                System.out.println(">>> Erreur chargement level : " + ex.getMessage());
+            }
+        });
+    }
+
 }

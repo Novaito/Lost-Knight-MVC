@@ -73,7 +73,7 @@ public class DemoMain extends Application{
 
 		 */
 
-		GameLoader loader = new GameLoader(new File("./save/gamesave2.json"));
+		GameLoader loader = new GameLoader(new File("./save/gamesave.json"));
 		Location spawn = loader.load("Meadow");
 
 

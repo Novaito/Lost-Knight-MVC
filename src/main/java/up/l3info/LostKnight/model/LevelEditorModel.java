@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import java.io.File;
+
 
 import up.l3info.LostKnight.model.core.character.GameCharacter;
 import up.l3info.LostKnight.model.core.character.Orc;
@@ -39,7 +41,8 @@ public class LevelEditorModel implements Model {
 		this.locName = locName;
 		
 		if (isExist) {
-			GameLoader loader = new GameLoader(new File(SAVE_FILE));
+			//GameLoader loader = new GameLoader(new File(SAVE_FILE));
+			GameLoader loader = new GameLoader(new File("./save/" + locName + ".json"));
 			Location loc;
 			try {
 				loc = loader.load(locName);
@@ -149,9 +152,12 @@ public class LevelEditorModel implements Model {
 				}				
 			}
 		}
-		
-		File json = new File(SAVE_FILE);
-		
+
+
+		//File json = new File(SAVE_FILE);
+
+		File json = new File("./save/" + locName + ".json");
+
 		GameSaver saver = new GameSaver(json, game);
 		saver.save(loc);
 		

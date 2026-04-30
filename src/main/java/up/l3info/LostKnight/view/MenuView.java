@@ -15,6 +15,7 @@ public class MenuView extends HBox implements View {
     private final Button levelEditorCreating;
     private final Button levelEditorLoading;
     private final Button quitter;
+    private final Button playLevel;
     private ConfigSection createSection;
     private ConfigSection loadSection;
     private VBox main;
@@ -42,6 +43,9 @@ public class MenuView extends HBox implements View {
         
         levelEditorLoading = new Button("Charger un level");
         levelEditorLoading.setPrefWidth(200);
+
+        playLevel = new Button("Jouer un level édité");
+        playLevel.setPrefWidth(200);
         
         createSection = ConfigSection.create(sizeX, sizeY, false);
         createSection.setMaxWidth(200);
@@ -54,7 +58,7 @@ public class MenuView extends HBox implements View {
         this.quitter = new Button("Quitter");
         this.quitter.setPrefWidth(200);
 
-        main.getChildren().addAll(title, this.graphique, this.textuelle, levelEditorCreating, levelEditorLoading, this.quitter);
+        main.getChildren().addAll(title, this.graphique, this.textuelle, levelEditorCreating, levelEditorLoading,playLevel ,this.quitter);
         getChildren().addAll(new Spring(), main, new Spring());
     }
 
@@ -83,7 +87,11 @@ public class MenuView extends HBox implements View {
     public Button getQuitter(){
         return this.quitter;
     }
-    
+
+    public Button getPlayLevel() {
+        return playLevel;
+    }
+
     public void showLoadSection() {
     	main.getChildren().add(main.getChildren().size() - 1, loadSection);
     }
