@@ -1,1 +1,135 @@
-{"Meadow":{"sizeX":15,"tiles":["/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png"],"characters":{"Orc":{"type":"Orc","name":"Orc","hp":100,"tilePath":"/img/sprite/orc.png","dialog":"je suis mechant","posX":200,"posY":300,"weakness":0,"weapon":{"type":"Weapon","posX":0,"posY":0,"name":"AxRock","description":"This is a AxRock. It does 15 damages per attack","damages":15,"tilePath":""},"dead":false,"maxHp":100}},"exits":{},"Items":{},"sizeY":15},"Field":{"sizeX":5,"tiles":["/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/rightTurnPath.png","/img/floor/rightTurnPath.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/grass.png","/img/floor/bottomRightPath.png","/img/floor/straitPath.png"],"characters":{"sprite2":{"type":"Orc","name":"sprite2","hp":100,"tilePath":"/img/sprite/pork.png","dialog":null,"posX":3,"posY":3,"weakness":0,"weapon":{"type":"Weapon","posX":0,"posY":0,"name":"AxRock","description":"This is a AxRock. It does 15 damages per attack","damages":15,"tilePath":""},"dead":false,"maxHp":100},"sprite1":{"type":"Orc","name":"sprite1","hp":100,"tilePath":"/img/sprite/pork.png","dialog":null,"posX":2,"posY":2,"weakness":0,"weapon":{"type":"Weapon","posX":0,"posY":0,"name":"AxRock","description":"This is a AxRock. It does 15 damages per attack","damages":15,"tilePath":""},"dead":false,"maxHp":100}},"exits":{},"Items":{},"sizeY":5}}
+{
+  "Meadow": {
+    "sizeX": 15,
+    "tiles": [
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png"
+    ],
+    "characters": {
+      "Orc": {
+        "type": "Orc",
+        "name": "Orc",
+        "hp": 100,
+        "tilePath": "/img/sprite/orc.png",
+        "dialog": "je suis mechant",
+        "posX": 200,
+        "posY": 300,
+        "weakness": 0,
+        "weapon": {
+          "type": "Weapon",
+          "posX": 0,
+          "posY": 0,
+          "name": "AxRock",
+          "description": "This is a AxRock. It does 15 damages per attack",
+          "damages": 15,
+          "tilePath": ""
+        },
+        "dead": false,
+        "maxHp": 100
+      }
+    },
+    "exits": {},
+    "Items": {},
+    "sizeY": 15
+  },
+  "Field": {
+    "sizeX": 5,
+    "tiles": [
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/rightTurnPath.png",
+      "/img/floor/rightTurnPath.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/grass.png",
+      "/img/floor/bottomRightPath.png",
+      "/img/floor/straitPath.png"
+    ],
+    "characters": {
+      "sprite2": {
+        "type": "Orc",
+        "name": "sprite2",
+        "hp": 100,
+        "tilePath": "/img/sprite/pork.png",
+        "dialog": null,
+        "posX": 3,
+        "posY": 3,
+        "weakness": 0,
+        "weapon": {
+          "type": "Weapon",
+          "posX": 0,
+          "posY": 0,
+          "name": "AxRock",
+          "description": "This is a AxRock. It does 15 damages per attack",
+          "damages": 15,
+          "tilePath": ""
+        },
+        "dead": false,
+        "maxHp": 100
+      },
+      "sprite1": {
+        "type": "Orc",
+        "name": "sprite1",
+        "hp": 100,
+        "tilePath": "/img/sprite/pork.png",
+        "dialog": null,
+        "posX": 2,
+        "posY": 2,
+        "weakness": 0,
+        "weapon": {
+          "type": "Weapon",
+          "posX": 0,
+          "posY": 0,
+          "name": "AxRock",
+          "description": "This is a AxRock. It does 15 damages per attack",
+          "damages": 15,
+          "tilePath": ""
+        },
+        "dead": false,
+        "maxHp": 100
+      }
+    },
+    "exits": {},
+    "Items": {},
+    "sizeY": 5
+  }
+}

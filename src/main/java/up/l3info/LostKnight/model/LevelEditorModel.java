@@ -116,7 +116,12 @@ public class LevelEditorModel implements Model {
 				
 				Stream.of(f.listFiles())
 					.filter(file -> !file.isDirectory())
-					.forEach(file -> listFile.add(path + dirName + "/" + file.getName()));
+					.forEach(file -> {
+						String[] splittedPath = file.getPath().split("/");
+						if (splittedPath[splittedPath.length-1].split("png").length != 2) {
+							listFile.add(path + dirName + "/" + file.getName());
+						}	
+					});
 				// Debug paths
 				//Stream.of(listFile).forEach(x -> System.out.println(x));
 				
